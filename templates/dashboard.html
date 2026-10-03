@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LIFECRAFT - Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            min-height: 100vh;
+
+            background: #F5EEDC;
+
+            color: #171512;
+
+            font-family: "Inter", sans-serif;
+
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           BACKGROUND
+        ========================= */
+
+        .background {
+            position: fixed;
+
+            inset: 0;
+
+            overflow: hidden;
+
+            pointer-events: none;
+        }
+
+        .grid {
+            position: absolute;
+
+            width: 200%;
+            height: 200%;
+
+            left: -50%;
+            top: -35%;
+
+            background-image:
+                linear-gradient(
+                    rgba(23, 21, 18, 0.07) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(23, 21, 18, 0.07) 1px,
+                    transparent 1px
+                );
+
+            background-size: 55px 55px;
+
+            transform:
+                perspective(600px)
+                rotateX(60deg);
+
+            animation: gridMove 12s linear infinite;
+        }
+
+        @keyframes gridMove {
+
+            from {
+                transform:
+                    perspective(600px)
+                    rotateX(60deg)
+                    translateY(0);
+            }
+
+            to {
+                transform:
+                    perspective(600px)
+                    rotateX(60deg)
+                    translateY(55px);
+            }
+        }
+
+        .glow {
+            position: absolute;
+
+            width: 450px;
+            height: 450px;
+
+            border-radius: 50%;
+
+            background: rgba(23, 21, 18, 0.08);
+
+            filter: blur(85px);
+
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .glow.one {
+            top: -180px;
+            left: -120px;
+        }
+
+        .glow.two {
+            right: -180px;
+            bottom: -180px;
+
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(35px, -25px);
+            }
+        }
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .page {
+            position: relative;
+
+            z-index: 5;
+
+            min-height: 100vh;
+
+            padding: 50px 7%;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            max-width: 1150px;
+
+            margin: auto;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            animation: fadeDown 0.8s ease both;
+        }
+
+        @keyframes fadeDown {
+
+            from {
+                opacity: 0;
+
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform: translateY(0);
+            }
+        }
+
+        .brand {
+            font-family: "Orbitron", sans-serif;
+
+            font-size: 27px;
+
+            font-weight: 900;
+
+            letter-spacing: 4px;
+        }
+
+        .logout {
+            padding: 11px 20px;
+
+            border-radius: 12px;
+
+            border: 1px solid rgba(23, 21, 18, 0.15);
+
+            background: rgba(255, 255, 255, 0.35);
+
+            backdrop-filter: blur(15px);
+
+            color: #171512;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.25s ease;
+        }
+
+        .logout:hover {
+            background: #171512;
+
+            color: #F5EEDC;
+
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            max-width: 1150px;
+
+            margin: 80px auto 55px;
+
+            animation: fadeUp 0.8s ease 0.15s both;
+        }
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            margin: 0;
+
+            font-family: "Orbitron", sans-serif;
+
+            font-size: clamp(35px, 5vw, 65px);
+
+            letter-spacing: 2px;
+        }
+
+        .hero h1 span {
+            opacity: 0.5;
+        }
+
+        .hero p {
+            max-width: 700px;
+
+            margin-top: 18px;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+
+            opacity: 0.65;
+        }
+
+        /* =========================
+           GLASS BUTTONS
+        ========================= */
+
+        .buttons {
+            max-width: 1150px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 22px;
+        }
+
+        .glass-button {
+            position: relative;
+
+            min-height: 150px;
+
+            padding: 28px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            text-decoration: none;
+
+            color: #171512;
+
+            background:
+                rgba(255, 255, 255, 0.38);
+
+            border:
+                1px solid rgba(23, 21, 18, 0.14);
+
+            border-radius: 20px;
+
+            backdrop-filter: blur(18px);
+
+            -webkit-backdrop-filter: blur(18px);
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.08);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+
+            animation: buttonAppear 0.8s ease both;
+        }
+
+        .glass-button:nth-child(1) {
+            animation-delay: 0.25s;
+        }
+
+        .glass-button:nth-child(2) {
+            animation-delay: 0.35s;
+        }
+
+        .glass-button:nth-child(3) {
+            animation-delay: 0.45s;
+        }
+
+        .glass-button:nth-child(4) {
+            animation-delay: 0.55s;
+        }
+
+        @keyframes buttonAppear {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(25px)
+                    scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+        .glass-button::before {
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            right: -100px;
+            top: -110px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 255, 255, 0.35);
+
+            filter: blur(25px);
+
+            transition: 0.4s ease;
+        }
+
+        .glass-button:hover {
+            transform: translateY(-7px);
+
+            background:
+                rgba(255, 255, 255, 0.58);
+
+            box-shadow:
+                0 25px 55px rgba(0, 0, 0, 0.13);
+        }
+
+        .glass-button:hover::before {
+            transform: scale(1.4);
+        }
+
+        .icon {
+            font-size: 32px;
+
+            margin-bottom: 15px;
+        }
+
+        .button-title {
+            position: relative;
+
+            font-family: "Orbitron", sans-serif;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+        }
+
+        .button-description {
+            position: relative;
+
+            margin-top: 8px;
+
+            font-size: 14px;
+
+            opacity: 0.6;
+
+            line-height: 1.5;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .page {
+                padding: 30px 20px;
+            }
+
+            .hero {
+                margin-top: 55px;
+            }
+
+            .buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                align-items: center;
+            }
+
+            .brand {
+                font-size: 22px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="background">
+
+        <div class="grid"></div>
+
+        <div class="glow one"></div>
+
+        <div class="glow two"></div>
+
+    </div>
+
+
+    <main class="page">
+
+        <header class="header">
+
+            <div class="brand">
+                LIFECRAFT
+            </div>
+
+            <a
+                href="/logout"
+                class="logout"
+            >
+                LOGOUT
+            </a>
+
+        </header>
+
+
+        <section class="hero">
+
+            <h1>
+                Welcome, <span>{{ username }}</span>
+            </h1>
+
+            <p>
+                Choose a simulation and explore your career,
+                financial decisions, and possible outcomes.
+            </p>
+
+        </section>
+
+
+        <section class="buttons">
+
+            <a
+                href="/questionnaire"
+                class="glass-button"
+            >
+
+                <div class="icon">🎯</div>
+
+                <div class="button-title">
+                    CAREER SIMULATION →
+                </div>
+
+                <div class="button-description">
+                    Discover career paths based on your interests,
+                    strengths and preferences.
+                </div>
+
+            </a>
+
+
+            <a
+                href="/financial-simulator"
+                class="glass-button"
+            >
+
+                <div class="icon">💰</div>
+
+                <div class="button-title">
+                    FINANCIAL SIMULATOR →
+                </div>
+
+                <div class="button-description">
+                    Explore income, expenses, savings and
+                    investment scenarios.
+                </div>
+
+            </a>
+
+
+            <a
+                href="/careers"
+                class="glass-button"
+            >
+
+                <div class="icon">🧭</div>
+
+                <div class="button-title">
+                    EXPLORE CAREERS →
+                </div>
+
+                <div class="button-description">
+                    Browse career information, skills and
+                    educational pathways.
+                </div>
+
+            </a>
+
+
+            <a
+                href="/reports"
+                class="glass-button"
+            >
+
+                <div class="icon">📊</div>
+
+                <div class="button-title">
+                    PREVIOUS REPORTS →
+                </div>
+
+                <div class="button-description">
+                    View your previous LIFECRAFT simulation
+                    results.
+                </div>
+
+            </a>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

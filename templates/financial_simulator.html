@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LIFECRAFT - Financial Simulator</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+
+        font-family: "Sora", sans-serif;
+
+        background:
+            radial-gradient(
+                circle at 50% 35%,
+                rgba(255, 220, 150, 0.35),
+                transparent 45%
+            ),
+            #F5EEDC;
+
+        color: #171512;
+
+        overflow-x: hidden;
+    }
+
+    body::before {
+        content: "";
+
+        position: fixed;
+
+        inset: 0;
+
+        background-image:
+            linear-gradient(
+                rgba(23, 21, 18, 0.035) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                90deg,
+                rgba(23, 21, 18, 0.035) 1px,
+                transparent 1px
+            );
+
+        background-size: 55px 55px;
+
+        pointer-events: none;
+
+        z-index: 0;
+    }
+
+    .glow {
+        position: fixed;
+
+        width: 500px;
+        height: 500px;
+
+        border-radius: 50%;
+
+        background: rgba(255, 205, 110, 0.18);
+
+        filter: blur(100px);
+
+        top: 25%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+
+        pointer-events: none;
+    }
+
+    .page {
+        position: relative;
+
+        z-index: 2;
+
+        width: min(1100px, 92%);
+
+        margin: auto;
+
+        padding: 40px 0 70px;
+    }
+
+    .topbar {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 55px;
+    }
+
+    .logo {
+        font-size: 20px;
+
+        font-weight: 700;
+
+        letter-spacing: 4px;
+    }
+
+    .step {
+        font-size: 11px;
+
+        letter-spacing: 2px;
+
+        opacity: 0.55;
+    }
+
+    .header {
+        text-align: center;
+
+        margin-bottom: 45px;
+    }
+
+    .status {
+        display: inline-block;
+
+        padding: 8px 16px;
+
+        border-radius: 50px;
+
+        border: 1px solid rgba(23, 21, 18, 0.14);
+
+        background: rgba(255, 255, 255, 0.28);
+
+        font-size: 10px;
+
+        letter-spacing: 2px;
+
+        margin-bottom: 22px;
+    }
+
+    h1 {
+        font-size: clamp(34px, 5vw, 55px);
+
+        line-height: 1.1;
+
+        letter-spacing: -2px;
+
+        margin-bottom: 18px;
+    }
+
+    .subtitle {
+        max-width: 650px;
+
+        margin: auto;
+
+        font-size: 14px;
+
+        line-height: 1.8;
+
+        opacity: 0.62;
+    }
+
+    .simulator-card {
+        background: rgba(255, 255, 255, 0.30);
+
+        border: 1px solid rgba(23, 21, 18, 0.12);
+
+        border-radius: 24px;
+
+        padding: 38px;
+
+        backdrop-filter: blur(18px);
+
+        box-shadow:
+            0 25px 70px rgba(23, 21, 18, 0.08);
+    }
+
+    .input-grid {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 24px;
+    }
+
+    .field {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 9px;
+    }
+
+    .field label {
+        font-size: 11px;
+
+        font-weight: 600;
+
+        letter-spacing: 1.3px;
+
+        text-transform: uppercase;
+
+        opacity: 0.7;
+    }
+
+    .field input,
+    .field select {
+        width: 100%;
+
+        padding: 15px 16px;
+
+        border-radius: 10px;
+
+        border: 1px solid rgba(23, 21, 18, 0.14);
+
+        background: rgba(255, 255, 255, 0.48);
+
+        color: #171512;
+
+        font-family: inherit;
+
+        font-size: 14px;
+
+        outline: none;
+
+        transition: 0.25s ease;
+    }
+
+    .field input:focus,
+    .field select:focus {
+        border-color: rgba(23, 21, 18, 0.45);
+
+        background: rgba(255, 255, 255, 0.7);
+
+        box-shadow:
+            0 0 0 4px rgba(23, 21, 18, 0.05);
+    }
+
+    .hint {
+        font-size: 10px;
+
+        opacity: 0.48;
+
+        line-height: 1.5;
+    }
+
+    .period-section {
+        margin-top: 32px;
+
+        padding-top: 30px;
+
+        border-top: 1px solid rgba(23, 21, 18, 0.10);
+    }
+
+    .period-title {
+        font-size: 11px;
+
+        font-weight: 600;
+
+        letter-spacing: 1.3px;
+
+        text-transform: uppercase;
+
+        opacity: 0.7;
+
+        margin-bottom: 15px;
+    }
+
+    .period-options {
+        display: grid;
+
+        grid-template-columns: repeat(5, 1fr);
+
+        gap: 10px;
+    }
+
+    .period-option {
+        position: relative;
+    }
+
+    .period-option input {
+        position: absolute;
+
+        opacity: 0;
+
+        pointer-events: none;
+    }
+
+    .period-option label {
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        min-height: 52px;
+
+        border-radius: 10px;
+
+        border: 1px solid rgba(23, 21, 18, 0.13);
+
+        background: rgba(255, 255, 255, 0.30);
+
+        font-size: 12px;
+
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: 0.25s ease;
+    }
+
+    .period-option label:hover {
+        transform: translateY(-2px);
+
+        background: rgba(255, 255, 255, 0.55);
+    }
+
+    .period-option input:checked + label {
+        background: #171512;
+
+        color: #F5EEDC;
+
+        border-color: #171512;
+
+        box-shadow:
+            0 8px 20px rgba(23, 21, 18, 0.16);
+    }
+
+    .action-area {
+        margin-top: 35px;
+
+        display: flex;
+
+        justify-content: center;
+    }
+
+    .run-button {
+        border: none;
+
+        padding: 17px 35px;
+
+        border-radius: 9px;
+
+        background: #171512;
+
+        color: #F5EEDC;
+
+        font-family: inherit;
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        letter-spacing: 2px;
+
+        cursor: pointer;
+
+        transition: 0.25s ease;
+    }
+
+    .run-button:hover {
+        transform: translateY(-4px);
+
+        box-shadow:
+            0 12px 30px rgba(23, 21, 18, 0.20);
+    }
+
+    .run-button:active {
+        transform: translateY(-1px) scale(0.98);
+    }
+
+    .note {
+        text-align: center;
+
+        margin-top: 25px;
+
+        font-size: 10px;
+
+        line-height: 1.7;
+
+        opacity: 0.48;
+    }
+
+    @media (max-width: 700px) {
+
+        .page {
+            padding-top: 25px;
+        }
+
+        .topbar {
+            margin-bottom: 40px;
+        }
+
+        .simulator-card {
+            padding: 25px;
+        }
+
+        .input-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .period-options {
+            grid-template-columns: repeat(5, 1fr);
+
+            gap: 6px;
+        }
+
+        .period-option label {
+            min-height: 45px;
+
+            font-size: 10px;
+        }
+
+    }
+
+    @media (max-width: 450px) {
+
+        h1 {
+            font-size: 34px;
+        }
+
+        .subtitle {
+            font-size: 12px;
+        }
+
+        .period-option label {
+            min-height: 42px;
+
+            font-size: 9px;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<div class="page">
+
+```
+<div class="topbar">
+
+    <div class="logo">
+        LIFECRAFT
+    </div>
+
+    <div class="step">
+        FINANCIAL SIMULATOR
+    </div>
+
+</div>
+
+
+<div class="header">
+
+    <div class="status">
+        FINANCIAL PROJECTION MODE
+    </div>
+
+    <h1>
+        💰 Plan Your Future
+    </h1>
+
+    <p class="subtitle">
+        Explore how your income, expenses, savings and investments
+        could change over time through a simulated financial
+        environment.
+    </p>
+
+</div>
+
+
+<div class="simulator-card">
+
+    <form method="POST" action="/financial-simulator">
+
+        <div class="input-grid">
+
+
+            <div class="field">
+
+                <label>
+                    Monthly Income
+                </label>
+
+                <input
+                    type="number"
+                    name="income"
+                    placeholder="₹ 50,000"
+                    min="0"
+                    required
+                >
+
+                <div class="hint">
+                    Your estimated monthly income.
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Monthly Expenses
+                </label>
+
+                <input
+                    type="number"
+                    name="expenses"
+                    placeholder="₹ 25,000"
+                    min="0"
+                    required
+                >
+
+                <div class="hint">
+                    Your estimated monthly spending.
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Current Savings
+                </label>
+
+                <input
+                    type="number"
+                    name="savings"
+                    placeholder="₹ 1,00,000"
+                    min="0"
+                    required
+                >
+
+                <div class="hint">
+                    Savings you already have.
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Monthly Investment
+                </label>
+
+                <input
+                    type="number"
+                    name="investment"
+                    placeholder="₹ 10,000"
+                    min="0"
+                    required
+                >
+
+                <div class="hint">
+                    Amount invested every month.
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Annual Income Growth
+                </label>
+
+                <input
+                    type="number"
+                    name="income_growth"
+                    placeholder="5"
+                    min="0"
+                    max="100"
+                    step="0.1"
+                    required
+                >
+
+                <div class="hint">
+                    Simulated yearly increase in income (%).
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Annual Investment Return
+                </label>
+
+                <input
+                    type="number"
+                    name="investment_return"
+                    placeholder="8"
+                    min="0"
+                    max="100"
+                    step="0.1"
+                    required
+                >
+
+                <div class="hint">
+                    Simulated yearly investment growth (%).
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="period-section">
+
+            <div class="period-title">
+                Simulation Period
+            </div>
+
+
+            <div class="period-options">
+
+                <div class="period-option">
+
+                    <input
+                        type="radio"
+                        name="years"
+                        id="year1"
+                        value="1"
+                        checked
+                    >
+
+                    <label for="year1">
+                        1 Year
+                    </label>
+
+                </div>
+
+
+                <div class="period-option">
+
+                    <input
+                        type="radio"
+                        name="years"
+                        id="year2"
+                        value="2"
+                    >
+
+                    <label for="year2">
+                        2 Years
+                    </label>
+
+                </div>
+
+
+                <div class="period-option">
+
+                    <input
+                        type="radio"
+                        name="years"
+                        id="year3"
+                        value="3"
+                    >
+
+                    <label for="year3">
+                        3 Years
+                    </label>
+
+                </div>
+
+
+                <div class="period-option">
+
+                    <input
+                        type="radio"
+                        name="years"
+                        id="year4"
+                        value="4"
+                    >
+
+                    <label for="year4">
+                        4 Years
+                    </label>
+
+                </div>
+
+
+                <div class="period-option">
+
+                    <input
+                        type="radio"
+                        name="years"
+                        id="year5"
+                        value="5"
+                    >
+
+                    <label for="year5">
+                        5 Years
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="action-area">
+
+            <button
+                type="submit"
+                class="run-button"
+            >
+                🚀 RUN SIMULATION →
+            </button>
+
+        </div>
+
+    </form>
+
+
+    <div class="note">
+
+        This is an educational simulation based on the values
+        entered. It does not represent guaranteed financial
+        outcomes or professional financial advice.
+
+    </div>
+
+</div>
+```
+
+</div>
+
+</body>
+
+</html>

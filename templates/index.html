@@ -1,0 +1,1110 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LIFECRAFT</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #F5EEDC;
+            color: #171512;
+            font-family: 'Sora', sans-serif;
+            overflow-x: hidden;
+        }
+
+
+        /* =================================
+           BACKGROUND GRID
+        ================================= */
+
+        .grid {
+            position: fixed;
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(23,21,18,0.09) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(23,21,18,0.09) 1px,
+                    transparent 1px
+                );
+
+            background-size: 55px 55px;
+
+            mask-image:
+                radial-gradient(
+                    ellipse at center,
+                    transparent 0%,
+                    transparent 28%,
+                    black 65%,
+                    transparent 100%
+                );
+
+            animation: gridMove 14s linear infinite;
+
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(55px);
+            }
+
+        }
+
+
+        /* =================================
+           CENTRAL LIGHT
+        ================================= */
+
+        .glow {
+            position: fixed;
+
+            width: 520px;
+            height: 520px;
+
+            border-radius: 50%;
+
+            background: rgba(23,21,18,0.10);
+
+            filter: blur(110px);
+
+            left: 50%;
+            top: 30%;
+
+            transform: translate(-50%, -50%);
+
+            pointer-events: none;
+            z-index: 0;
+        }
+
+
+        /* =================================
+           NETWORK
+        ================================= */
+
+        .network {
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            opacity: 0.7;
+
+            transition: transform 0.3s ease-out;
+
+            z-index: 1;
+        }
+
+        .node {
+            position: absolute;
+
+            width: 5px;
+            height: 5px;
+
+            border-radius: 50%;
+
+            background: #171512;
+
+            box-shadow:
+                0 0 14px rgba(23,21,18,0.18);
+
+            animation: nodePulse 3s infinite ease-in-out;
+        }
+
+        .node1 {
+            left: 12%;
+            top: 22%;
+        }
+
+        .node2 {
+            left: 28%;
+            top: 68%;
+            animation-delay: 0.6s;
+        }
+
+        .node3 {
+            left: 82%;
+            top: 20%;
+            animation-delay: 1.2s;
+        }
+
+        .node4 {
+            left: 88%;
+            top: 72%;
+            animation-delay: 1.8s;
+        }
+
+        .node5 {
+            left: 18%;
+            top: 78%;
+            animation-delay: 2.1s;
+        }
+
+        .node6 {
+            left: 75%;
+            top: 66%;
+            animation-delay: 1s;
+        }
+
+        @keyframes nodePulse {
+
+            0%, 100% {
+                opacity: 0.25;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.9;
+                transform: scale(1.5);
+            }
+
+        }
+
+        .line {
+            position: absolute;
+
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(23,21,18,0.16),
+                    transparent
+                );
+
+            transform-origin: left center;
+        }
+
+        .line1 {
+            width: 400px;
+            left: 12%;
+            top: 22%;
+            transform: rotate(35deg);
+        }
+
+        .line2 {
+            width: 450px;
+            left: 28%;
+            top: 68%;
+            transform: rotate(-35deg);
+        }
+
+        .line3 {
+            width: 360px;
+            left: 75%;
+            top: 66%;
+            transform: rotate(-55deg);
+        }
+
+        .line4 {
+            width: 500px;
+            left: 18%;
+            top: 78%;
+            transform: rotate(-20deg);
+        }
+
+
+        /* =================================
+           MAIN CONTENT
+        ================================= */
+
+        .hero {
+            position: relative;
+
+            z-index: 5;
+
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 70px 25px;
+
+            animation: pageIn 1.2s ease;
+        }
+
+        @keyframes pageIn {
+
+            from {
+                opacity: 0;
+                transform: scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+        }
+
+
+        /* =================================
+           AI STATUS
+        ================================= */
+
+        .status {
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: 11px;
+            font-weight: 600;
+
+            letter-spacing: 2.5px;
+
+            color: #665F52;
+
+            margin-bottom: 30px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #171512;
+
+            box-shadow:
+                0 0 12px rgba(23,21,18,0.18);
+
+            animation: statusPulse 2s infinite;
+        }
+
+        @keyframes statusPulse {
+
+            0%, 100% {
+                opacity: 0.45;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+        }
+
+
+        /* =================================
+           LOGO
+        ================================= */
+
+        .logo {
+            font-size: clamp(58px, 9vw, 115px);
+
+            font-weight: 700;
+
+            letter-spacing: 14px;
+
+            margin-left: 14px;
+
+            color: #171512;
+
+            text-shadow:
+                0 0 25px rgba(23,21,18,0.10);
+        }
+
+        .logo::after {
+            content: "";
+
+            display: block;
+
+            width: 65px;
+            height: 2px;
+
+            background: #171512;
+
+            margin: 22px auto 0;
+
+            box-shadow:
+                0 0 16px rgba(23,21,18,0.18);
+        }
+
+
+        /* =================================
+           TAGLINE
+        ================================= */
+
+        .tagline {
+            margin-top: 27px;
+
+            font-size: 17px;
+            font-weight: 500;
+
+            letter-spacing: 4px;
+
+            color: #302C25;
+        }
+
+
+        /* =================================
+           DESCRIPTION
+        ================================= */
+
+        .description {
+            max-width: 650px;
+
+            margin-top: 20px;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+
+            color: #665F52;
+        }
+
+
+        /* =================================
+           SIMULATOR BUTTONS
+        ================================= */
+
+        .simulator-buttons {
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 16px;
+
+            margin-top: 38px;
+
+            flex-wrap: wrap;
+        }
+
+        .simulator-button {
+
+            min-width: 245px;
+
+            padding: 17px 28px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.8px;
+
+            transition:
+                transform 0.25s cubic-bezier(.2,.8,.2,1),
+                box-shadow 0.25s ease,
+                background 0.25s ease,
+                color 0.25s ease;
+
+            cursor: pointer;
+        }
+
+        .career-button {
+
+            background: #171512;
+
+            color: #F5EEDC;
+
+            box-shadow:
+                0 8px 30px rgba(0,0,0,0.22);
+        }
+
+        .financial-button {
+
+            background: rgba(255,255,255,0.42);
+
+            color: #171512;
+
+            border: 1px solid rgba(23,21,18,0.18);
+
+            backdrop-filter: blur(12px);
+
+            box-shadow:
+                0 8px 25px rgba(23,21,18,0.10);
+        }
+
+        .simulator-button:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 35px rgba(23,21,18,0.20);
+        }
+
+        .career-button:hover {
+            background: #292621;
+        }
+
+        .financial-button:hover {
+            background: rgba(255,255,255,0.75);
+        }
+
+        .simulator-button:active {
+
+            transform: translateY(-1px) scale(0.975);
+        }
+
+
+        /* =================================
+           ABOUT SECTION
+        ================================= */
+
+        .about-section {
+
+            position: relative;
+
+            z-index: 5;
+
+            max-width: 1000px;
+
+            margin: 0 auto;
+
+            padding: 100px 25px 70px;
+
+            text-align: center;
+        }
+
+        .section-label {
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 3px;
+
+            color: #756B5C;
+
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+
+            font-size: clamp(30px, 5vw, 48px);
+
+            font-weight: 700;
+
+            letter-spacing: -1px;
+
+            color: #171512;
+
+            margin-bottom: 22px;
+        }
+
+        .about-text {
+
+            max-width: 780px;
+
+            margin: 0 auto;
+
+            font-size: 14px;
+
+            line-height: 1.9;
+
+            color: #665F52;
+        }
+
+        .note {
+
+            max-width: 700px;
+
+            margin: 25px auto 0;
+
+            padding: 15px 20px;
+
+            border-radius: 12px;
+
+            background: rgba(255,255,255,0.35);
+
+            border: 1px solid rgba(23,21,18,0.10);
+
+            font-size: 11px;
+
+            line-height: 1.7;
+
+            color: #756B5C;
+
+            backdrop-filter: blur(12px);
+        }
+
+
+        /* =================================
+           TEAM SECTION
+        ================================= */
+
+        .team-section {
+
+            position: relative;
+
+            z-index: 5;
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding: 70px 25px 110px;
+
+            text-align: center;
+        }
+
+        .team-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 22px;
+
+            margin-top: 38px;
+        }
+
+        .team-card {
+
+            padding: 34px 25px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.58),
+                    rgba(255,255,255,0.28)
+                );
+
+            border: 1px solid rgba(23,21,18,0.12);
+
+            backdrop-filter: blur(16px);
+
+            box-shadow:
+                0 15px 40px rgba(23,21,18,0.08);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .team-card:hover {
+
+            transform: translateY(-8px);
+
+            border-color:
+                rgba(23,21,18,0.25);
+
+            box-shadow:
+                0 22px 45px rgba(23,21,18,0.14);
+        }
+
+        .member-number {
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            color: #817866;
+
+            margin-bottom: 18px;
+        }
+
+        .member-name {
+
+            font-size: 22px;
+
+            font-weight: 700;
+
+            color: #171512;
+
+            margin-bottom: 12px;
+        }
+
+        .member-role {
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+            color: #665F52;
+        }
+
+
+        /* =================================
+           FOOTER
+        ================================= */
+
+        .footer {
+
+            position: relative;
+
+            z-index: 5;
+
+            text-align: center;
+
+            padding: 0 20px 30px;
+
+            font-size: 9px;
+
+            font-weight: 500;
+
+            letter-spacing: 2px;
+
+            color: #817866;
+        }
+
+
+        /* =================================
+           LAUNCH
+        ================================= */
+
+        .launch {
+
+            animation:
+                launch 0.8s ease forwards;
+        }
+
+        @keyframes launch {
+
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            30% {
+                transform: scale(1.04);
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+
+        }
+
+
+        /* =================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 700px) {
+
+            .hero {
+                min-height: 100vh;
+            }
+
+            .logo {
+
+                letter-spacing: 7px;
+
+                margin-left: 7px;
+            }
+
+            .tagline {
+
+                font-size: 12px;
+
+                letter-spacing: 2.5px;
+            }
+
+            .description {
+
+                padding: 0 20px;
+            }
+
+            .simulator-buttons {
+
+                flex-direction: column;
+
+                width: 100%;
+            }
+
+            .simulator-button {
+
+                width: min(320px, 90%);
+            }
+
+            .team-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .about-section {
+
+                padding-top: 70px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- BACKGROUND -->
+
+    <div class="grid"></div>
+
+    <div class="glow"></div>
+
+
+    <!-- NETWORK -->
+
+    <div class="network" id="network">
+
+        <div class="node node1"></div>
+        <div class="node node2"></div>
+        <div class="node node3"></div>
+        <div class="node node4"></div>
+        <div class="node node5"></div>
+        <div class="node node6"></div>
+
+        <div class="line line1"></div>
+        <div class="line line2"></div>
+        <div class="line line3"></div>
+        <div class="line line4"></div>
+
+    </div>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="page">
+
+        <div class="status">
+
+            <div class="status-dot"></div>
+
+            AI DECISION ENGINE ACTIVE
+
+        </div>
+
+
+        <div class="logo">
+
+            LIFECRAFT
+
+        </div>
+
+
+        <div class="tagline">
+
+            YOUR FUTURE. YOUR CHOICES.
+
+        </div>
+
+
+        <p class="description">
+
+            An interactive simulation that transforms your
+            interests, decisions and financial choices into
+            a personalized future journey.
+
+        </p>
+
+
+        <!-- SIMULATOR BUTTONS -->
+
+        <div class="simulator-buttons">
+
+            <a
+                href="/questionnaire"
+                class="simulator-button career-button"
+                id="careerButton"
+            >
+                🎯 CAREER DECISION SIMULATOR →
+            </a>
+
+
+            <a
+                href="/financial-simulator"
+                class="simulator-button financial-button"
+            >
+                💰 FINANCIAL SIMULATOR →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT LIFECRAFT -->
+
+    <section class="about-section">
+
+        <div class="section-label">
+
+            ABOUT THE PROJECT
+
+        </div>
+
+
+        <h2 class="section-title">
+
+            What is LIFECRAFT?
+
+        </h2>
+
+
+        <p class="about-text">
+
+            LIFECRAFT is an interactive decision-support
+            application designed to help students explore
+            career possibilities and understand financial
+            choices through simulation.
+
+            <br><br>
+
+            The system uses a questionnaire-based career
+            compatibility engine to analyse academic interests,
+            personal interests and work preferences. It then
+            provides career paths for exploration, including
+            information about courses, skills and other
+            career-related factors.
+
+            <br><br>
+
+            LIFECRAFT also includes a separate Financial
+            Simulator that allows users to explore how their
+            financial situation could change over a selected
+            period of up to five years.
+
+        </p>
+
+
+        <div class="note">
+
+            LIFECRAFT is an educational simulation intended
+            for exploration and learning. Its career
+            compatibility results and financial projections
+            should not be treated as professional career or
+            financial advice.
+
+        </div>
+
+    </section>
+
+
+    <!-- TEAM -->
+
+    <section class="team-section">
+
+        <div class="section-label">
+
+            THE TEAM
+
+        </div>
+
+
+        <h2 class="section-title">
+
+            Built by Three Minds
+
+        </h2>
+
+
+        <div class="team-grid">
+
+
+            <!-- HARsha -->
+
+            <div class="team-card">
+
+                <div class="member-number">
+
+                    MEMBER 01
+
+                </div>
+
+                <div class="member-name">
+
+                    Harsha
+
+                </div>
+
+                <div class="member-role">
+
+                    Career Data & Information
+
+                </div>
+
+            </div>
+
+
+            <!-- VAIBHAV -->
+
+            <div class="team-card">
+
+                <div class="member-number">
+
+                    MEMBER 02
+
+                </div>
+
+                <div class="member-name">
+
+                    Vaibhav
+
+                </div>
+
+                <div class="member-role">
+
+                    AI Recommendation & User Interface
+
+                </div>
+
+            </div>
+
+
+            <!-- SIDDESH -->
+
+            <div class="team-card">
+
+                <div class="member-number">
+
+                    MEMBER 03
+
+                </div>
+
+                <div class="member-name">
+
+                    Siddesh
+
+                </div>
+
+                <div class="member-role">
+
+                    Authentication & Backend
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        LIFECRAFT • CAREER & FINANCIAL DECISION SIMULATOR
+
+    </div>
+
+
+    <script>
+
+
+        /* =================================
+           MOUSE INTERACTION
+        ================================= */
+
+        const network =
+            document.getElementById("network");
+
+
+        document.addEventListener(
+            "mousemove",
+            function(event) {
+
+                const x =
+                    (event.clientX /
+                        window.innerWidth - 0.5);
+
+                const y =
+                    (event.clientY /
+                        window.innerHeight - 0.5);
+
+
+                network.style.transform =
+                    `translate(${x * 18}px, ${y * 18}px)`;
+
+            }
+        );
+
+
+        /* =================================
+           CAREER PAGE TRANSITION
+        ================================= */
+
+        const careerButton =
+            document.getElementById("careerButton");
+
+        const page =
+            document.getElementById("page");
+
+
+        careerButton.addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+                page.classList.add("launch");
+
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            careerButton.href;
+
+                    },
+                    700
+                );
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>
+```

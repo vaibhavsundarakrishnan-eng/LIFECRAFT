@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LIFECRAFT - Career Exploration</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
+
+<style>
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        min-height: 100vh;
+
+        font-family: "Sora", sans-serif;
+
+        background:
+            radial-gradient(
+                circle at 50% -10%,
+                #fffaf0 0%,
+                #f5eedc 45%,
+                #ede3cf 100%
+            );
+
+        color: #171511;
+
+        overflow-x: hidden;
+    }
+
+
+    /* =========================
+       BACKGROUND
+    ========================= */
+
+    .grid {
+        position: fixed;
+
+        inset: 0;
+
+        background-image:
+            linear-gradient(
+                rgba(23, 21, 17, 0.045) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                90deg,
+                rgba(23, 21, 17, 0.045) 1px,
+                transparent 1px
+            );
+
+        background-size: 50px 50px;
+
+        animation:
+            gridMove 18s linear infinite;
+
+        z-index: -3;
+
+        pointer-events: none;
+    }
+
+
+    @keyframes gridMove {
+
+        from {
+            transform: translateY(0);
+        }
+
+        to {
+            transform: translateY(50px);
+        }
+
+    }
+
+
+    .glow {
+        position: fixed;
+
+        width: 650px;
+        height: 650px;
+
+        border-radius: 50%;
+
+        background:
+            rgba(214, 193, 153, 0.25);
+
+        filter: blur(110px);
+
+        top: -320px;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        z-index: -2;
+
+        pointer-events: none;
+    }
+
+
+    /* =========================
+       MAIN CONTAINER
+    ========================= */
+
+    .container {
+        width: 90%;
+
+        max-width: 1000px;
+
+        margin: auto;
+
+        padding: 45px 0 80px;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .top-bar {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        padding-bottom: 22px;
+
+        border-bottom:
+            1px solid rgba(23, 21, 17, 0.12);
+
+        margin-bottom: 55px;
+    }
+
+
+    .brand {
+        font-size: 20px;
+
+        font-weight: 700;
+
+        letter-spacing: 4px;
+
+        color: #171511;
+    }
+
+
+    .step {
+        font-size: 10px;
+
+        font-weight: 600;
+
+        letter-spacing: 2px;
+
+        color: #6f6250;
+    }
+
+
+    .header {
+        text-align: center;
+
+        margin-bottom: 45px;
+    }
+
+
+    .status {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        font-size: 10px;
+
+        font-weight: 600;
+
+        letter-spacing: 2px;
+
+        color: #6f6250;
+
+        margin-bottom: 18px;
+    }
+
+
+    .status-dot {
+        width: 8px;
+
+        height: 8px;
+
+        border-radius: 50%;
+
+        background: #171511;
+
+        box-shadow:
+            0 0 0 4px rgba(23, 21, 17, 0.08);
+
+        animation:
+            pulse 2s ease-in-out infinite;
+    }
+
+
+    @keyframes pulse {
+
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        50% {
+            transform: scale(0.7);
+            opacity: 0.55;
+        }
+
+    }
+
+
+    h1 {
+        font-size: clamp(38px, 6vw, 60px);
+
+        font-weight: 700;
+
+        letter-spacing: -1.5px;
+
+        line-height: 1.1;
+
+        color: #171511;
+
+        margin-bottom: 15px;
+    }
+
+
+    .subtitle {
+        max-width: 620px;
+
+        margin: auto;
+
+        color: #756b5c;
+
+        line-height: 1.8;
+
+        font-size: 14px;
+    }
+
+
+    /* =========================
+       CAREER GRID
+    ========================= */
+
+    .career-list {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 20px;
+    }
+
+
+    /* =========================
+       CAREER CARD
+    ========================= */
+
+    .career-card {
+        position: relative;
+
+        padding: 27px;
+
+        border:
+            1px solid rgba(23, 21, 17, 0.12);
+
+        border-radius: 20px;
+
+        background:
+            rgba(255, 252, 244, 0.68);
+
+        backdrop-filter: blur(20px);
+
+        -webkit-backdrop-filter: blur(20px);
+
+        box-shadow:
+            0 18px 45px rgba(53, 44, 30, 0.09),
+            inset 0 1px 0 rgba(255, 255, 255, 0.85);
+
+        transition:
+            transform 0.35s ease,
+            box-shadow 0.35s ease,
+            border-color 0.35s ease;
+
+        overflow: hidden;
+
+        animation:
+            cardAppear 0.55s ease both;
+    }
+
+
+    .career-card:nth-child(2) {
+        animation-delay: 0.08s;
+    }
+
+    .career-card:nth-child(3) {
+        animation-delay: 0.16s;
+    }
+
+    .career-card:nth-child(4) {
+        animation-delay: 0.24s;
+    }
+
+    .career-card:nth-child(5) {
+        animation-delay: 0.32s;
+    }
+
+    .career-card:nth-child(6) {
+        animation-delay: 0.40s;
+    }
+
+
+    @keyframes cardAppear {
+
+        from {
+            opacity: 0;
+
+            transform:
+                translateY(18px);
+        }
+
+        to {
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+    }
+
+
+    .career-card::before {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 3px;
+
+        background:
+            linear-gradient(
+                90deg,
+                transparent,
+                rgba(23, 21, 17, 0.18),
+                transparent
+            );
+
+        opacity: 0;
+
+        transition:
+            opacity 0.3s ease;
+    }
+
+
+    .career-card:hover {
+        transform:
+            translateY(-6px);
+
+        border-color:
+            rgba(23, 21, 17, 0.24);
+
+        box-shadow:
+            0 28px 60px rgba(53, 44, 30, 0.14),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+
+
+    .career-card:hover::before {
+        opacity: 1;
+    }
+
+
+    /* =========================
+       CAREER NAME
+    ========================= */
+
+    .career-name {
+        font-size: 22px;
+
+        font-weight: 700;
+
+        letter-spacing: -0.5px;
+
+        color: #171511;
+
+        margin-bottom: 18px;
+    }
+
+
+    /* =========================
+       INFORMATION
+    ========================= */
+
+    .info {
+        color: #756b5c;
+
+        font-size: 13px;
+
+        line-height: 1.75;
+    }
+
+
+    .info b {
+        color: #171511;
+
+        font-weight: 700;
+    }
+
+
+    /* =========================
+       EXPLORE BUTTON
+    ========================= */
+
+    .explore-button {
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 8px;
+
+        margin-top: 22px;
+
+        padding: 13px 20px;
+
+        background:
+            #171511;
+
+        color:
+            #f5eedc;
+
+        text-decoration: none;
+
+        border:
+            1px solid #171511;
+
+        border-radius: 11px;
+
+        font-size: 11px;
+
+        font-weight: 600;
+
+        letter-spacing: 0.8px;
+
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease,
+            background 0.3s ease;
+    }
+
+
+    .explore-button:hover {
+        background:
+            #2b2721;
+
+        transform:
+            translateY(-3px);
+
+        box-shadow:
+            0 14px 28px rgba(23, 21, 17, 0.20);
+    }
+
+
+    .explore-button:active {
+        transform:
+            translateY(0);
+
+        box-shadow:
+            0 6px 12px rgba(23, 21, 17, 0.14);
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer-note {
+        text-align: center;
+
+        margin-top: 45px;
+
+        color: #756b5c;
+
+        font-size: 11px;
+
+        line-height: 1.7;
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 750px) {
+
+        .career-list {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+
+    @media (max-width: 550px) {
+
+        .container {
+            width: 92%;
+
+            padding-top: 25px;
+        }
+
+
+        .top-bar {
+            margin-bottom: 40px;
+        }
+
+
+        .brand {
+            font-size: 17px;
+
+            letter-spacing: 3px;
+        }
+
+
+        .step {
+            font-size: 9px;
+        }
+
+
+        .header {
+            margin-bottom: 35px;
+        }
+
+
+        h1 {
+            font-size: 38px;
+        }
+
+
+        .career-card {
+            padding: 22px;
+
+            border-radius: 17px;
+        }
+
+
+        .career-name {
+            font-size: 20px;
+        }
+
+
+        .explore-button {
+            width: 100%;
+        }
+
+    }
+
+
+    /* =========================
+       REDUCED MOTION
+    ========================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+
+            animation-duration: 0.01ms !important;
+
+            animation-iteration-count: 1 !important;
+
+            transition-duration: 0.01ms !important;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="grid"></div>
+
+<div class="glow"></div>
+
+<div class="container">
+
+```
+<!-- TOP BAR -->
+
+<div class="top-bar">
+
+    <div class="brand">
+        LIFECRAFT
+    </div>
+
+    <div class="step">
+        STEP 02 / EXPLORE
+    </div>
+
+</div>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="status">
+
+        <span class="status-dot"></span>
+
+        CAREER EXPLORATION ACTIVE
+
+    </div>
+
+
+    <h1>
+        🚀 Explore Careers
+    </h1>
+
+
+    <p class="subtitle">
+
+        Learn more about the career paths available
+        in LIFECRAFT and explore where each path can lead.
+
+    </p>
+
+</div>
+
+
+<!-- CAREERS -->
+
+<div class="career-list">
+
+
+    {% for career, info in career_info.items() %}
+
+
+    <div class="career-card">
+
+
+        <div class="career-name">
+
+            {{ career }}
+
+        </div>
+
+
+        <div class="info">
+
+            <b>Course:</b>
+
+            {{ info.course }}
+
+            <br>
+
+
+            <b>About:</b>
+
+            {{ info.description }}
+
+        </div>
+
+
+        <a
+            href="/select-career/{{ career }}"
+            class="explore-button"
+        >
+
+            Explore Career →
+
+        </a>
+
+
+    </div>
+
+
+    {% endfor %}
+
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer-note">
+
+    LIFECRAFT is an educational simulation.
+
+    Explore the possibilities and make your own decisions.
+
+</div>
+```
+
+</div>
+
+</body>
+
+</html>

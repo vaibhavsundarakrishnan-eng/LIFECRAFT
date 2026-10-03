@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LIFECRAFT - Career Details</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Sora", sans-serif;
+
+        background:
+            radial-gradient(
+                circle at 50% -10%,
+                #fffdf7 0%,
+                #f8f0df 38%,
+                #f0e5d0 72%,
+                #e7d9c0 100%
+            );
+
+        color: #171511;
+        padding: 50px 20px;
+        overflow-x: hidden;
+    }
+
+
+    /* =========================
+       BACKGROUND GRID
+    ========================= */
+
+    body::before {
+        content: "";
+
+        position: fixed;
+        inset: 0;
+
+        background-image:
+            linear-gradient(
+                rgba(23, 21, 17, 0.035) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                90deg,
+                rgba(23, 21, 17, 0.035) 1px,
+                transparent 1px
+            );
+
+        background-size: 50px 50px;
+
+        animation:
+            gridMove 20s linear infinite;
+
+        pointer-events: none;
+        z-index: -3;
+    }
+
+
+    @keyframes gridMove {
+
+        from {
+            transform: translateY(0);
+        }
+
+        to {
+            transform: translateY(50px);
+        }
+
+    }
+
+
+    /* =========================
+       SOFT GOLD GLOW
+    ========================= */
+
+    body::after {
+        content: "";
+
+        position: fixed;
+
+        width: 650px;
+        height: 650px;
+
+        border-radius: 50%;
+
+        background:
+            rgba(211, 183, 126, 0.18);
+
+        filter: blur(125px);
+
+        top: -360px;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        pointer-events: none;
+        z-index: -2;
+    }
+
+
+    /* =========================
+       MAIN CONTAINER
+    ========================= */
+
+    .container {
+
+        width: 100%;
+        max-width: 850px;
+
+        margin: auto;
+        padding: 45px;
+
+        background:
+            rgba(255, 253, 247, 0.70);
+
+        border:
+            1px solid rgba(23, 21, 17, 0.13);
+
+        border-radius: 25px;
+
+        box-shadow:
+            0 25px 60px
+            rgba(53, 44, 30, 0.10),
+
+            inset 0 1px 0
+            rgba(255, 255, 255, 0.90);
+
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+
+        animation:
+            fadeUp 0.7s ease both;
+    }
+
+
+    /* =========================
+       HEADER STATUS
+    ========================= */
+
+    .status {
+
+        display: inline-flex;
+        align-items: center;
+
+        padding: 8px 15px;
+
+        border-radius: 25px;
+
+        background:
+            rgba(23, 21, 17, 0.055);
+
+        border:
+            1px solid rgba(23, 21, 17, 0.13);
+
+        color: #625746;
+
+        font-size: 10px;
+        font-weight: 700;
+
+        letter-spacing: 1.8px;
+
+        margin-bottom: 20px;
+
+        box-shadow:
+            0 6px 18px
+            rgba(53, 44, 30, 0.05);
+    }
+
+
+    /* =========================
+       LABEL
+    ========================= */
+
+    .label {
+
+        color: #6b5d4a;
+
+        font-size: 11px;
+        font-weight: 700;
+
+        letter-spacing: 2px;
+
+        margin-top: 20px;
+        margin-bottom: 8px;
+    }
+
+
+    /* =========================
+       MAIN HEADING
+    ========================= */
+
+    h1 {
+
+        margin: 0 0 35px 0;
+
+        font-size: 42px;
+
+        line-height: 1.2;
+
+        letter-spacing: -1.3px;
+
+        color: #171511;
+    }
+
+
+    /* =========================
+       INFORMATION GRID
+    ========================= */
+
+    .info-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap: 18px;
+
+        margin-top: 10px;
+    }
+
+
+    /* =========================
+       INFORMATION CARDS
+    ========================= */
+
+    .info-card {
+
+        padding: 23px;
+
+        background:
+            rgba(255, 255, 255, 0.58);
+
+        border:
+            1px solid rgba(23, 21, 17, 0.10);
+
+        border-radius: 17px;
+
+        text-align: left;
+
+        box-shadow:
+            0 8px 22px
+            rgba(53, 44, 30, 0.04);
+
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease,
+            border-color 0.3s ease;
+    }
+
+
+    .info-card:hover {
+
+        transform:
+            translateY(-5px);
+
+        border-color:
+            rgba(23, 21, 17, 0.20);
+
+        box-shadow:
+            0 17px 35px
+            rgba(53, 44, 30, 0.10);
+    }
+
+
+    .info-card.full {
+
+        grid-column:
+            1 / -1;
+    }
+
+
+    .info-card .label {
+
+        margin-top: 0;
+    }
+
+
+    /* =========================
+       VALUES
+    ========================= */
+
+    .value {
+
+        color: #29251f;
+
+        font-size: 16px;
+
+        line-height: 1.7;
+    }
+
+
+    /* =========================
+       VERIFIED NOTE
+    ========================= */
+
+    .verified-card {
+
+        grid-column: 1 / -1;
+
+        padding: 20px 23px;
+
+        background:
+            rgba(211, 183, 126, 0.12);
+
+        border:
+            1px solid rgba(107, 93, 74, 0.18);
+
+        border-radius: 17px;
+    }
+
+
+    .verified-text {
+
+        color: #625746;
+
+        font-size: 13px;
+
+        line-height: 1.7;
+    }
+
+
+    /* =========================
+       ACTION AREA
+    ========================= */
+
+    .action-area {
+
+        margin-top: 35px;
+
+        padding-top: 28px;
+
+        border-top:
+            1px solid
+            rgba(23, 21, 17, 0.10);
+    }
+
+
+    .action-text {
+
+        color: #756b5c;
+
+        font-size: 13px;
+
+        line-height: 1.6;
+
+        margin-bottom: 18px;
+    }
+
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    .buttons {
+
+        display: flex;
+
+        gap: 12px;
+
+        flex-wrap: wrap;
+    }
+
+
+    .button {
+
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        padding: 15px 28px;
+
+        background:
+            #171511;
+
+        color:
+            #fffaf0;
+
+        text-decoration: none;
+
+        border-radius: 13px;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        letter-spacing: 0.3px;
+
+        border:
+            1px solid #171511;
+
+        box-shadow:
+            0 12px 28px
+            rgba(23, 21, 17, 0.20);
+
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            background 0.25s ease;
+    }
+
+
+    .button:hover {
+
+        background:
+            #302b24;
+
+        transform:
+            translateY(-4px);
+
+        box-shadow:
+            0 18px 35px
+            rgba(23, 21, 17, 0.24);
+    }
+
+
+    .button:active {
+
+        transform:
+            translateY(1px)
+            scale(0.98);
+    }
+
+
+    /* =========================
+       ROADMAP BUTTON
+    ========================= */
+
+    .roadmap-button {
+
+        background:
+            rgba(211, 183, 126, 0.22);
+
+        color:
+            #171511;
+
+        border:
+            1px solid rgba(107, 93, 74, 0.25);
+
+        box-shadow:
+            0 10px 25px
+            rgba(53, 44, 30, 0.08);
+    }
+
+
+    .roadmap-button:hover {
+
+        background:
+            rgba(211, 183, 126, 0.38);
+
+        color:
+            #171511;
+    }
+
+
+    /* =========================
+       BACK BUTTON
+    ========================= */
+
+    .back-button {
+
+        background:
+            rgba(255, 255, 255, 0.55);
+
+        color:
+            #171511;
+
+        border:
+            1px solid rgba(23, 21, 17, 0.14);
+
+        box-shadow:
+            0 8px 20px
+            rgba(53, 44, 30, 0.08);
+    }
+
+
+    .back-button:hover {
+
+        background:
+            rgba(255, 255, 255, 0.80);
+
+        color:
+            #171511;
+    }
+
+
+    /* =========================
+       ANIMATION
+    ========================= */
+
+    @keyframes fadeUp {
+
+        from {
+
+            opacity: 0;
+
+            transform:
+                translateY(18px);
+        }
+
+        to {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 650px) {
+
+        body {
+
+            padding:
+                25px 15px;
+        }
+
+
+        .container {
+
+            padding:
+                28px 20px;
+
+            border-radius:
+                20px;
+        }
+
+
+        h1 {
+
+            font-size:
+                32px;
+        }
+
+
+        .info-grid {
+
+            grid-template-columns:
+                1fr;
+        }
+
+
+        .info-card.full,
+        .verified-card {
+
+            grid-column:
+                auto;
+        }
+
+
+        .buttons {
+
+            flex-direction:
+                column;
+        }
+
+
+        .button {
+
+            width:
+                100%;
+        }
+
+    }
+
+
+    /* =========================
+       REDUCED MOTION
+    ========================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+
+            animation-duration:
+                0.01ms !important;
+
+            animation-iteration-count:
+                1 !important;
+
+            transition-duration:
+                0.01ms !important;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="container">
+
+
+    <div class="status">
+        ● CAREER PROFILE
+    </div>
+
+
+    <p class="label">
+        SELECTED CAREER
+    </p>
+
+
+    <h1>
+        {{ career }}
+    </h1>
+
+
+    <div class="info-grid">
+
+
+        <!-- COURSE -->
+
+        <div class="info-card">
+
+            <p class="label">
+                🎓 COURSE
+            </p>
+
+            <div class="value">
+                {{ info["course"] }}
+            </div>
+
+        </div>
+
+
+        <!-- FIELD -->
+
+        <div class="info-card">
+
+            <p class="label">
+                🧭 FIELD
+            </p>
+
+            <div class="value">
+                Career & Professional Path
+            </div>
+
+        </div>
+
+
+        <!-- DESCRIPTION -->
+
+        <div class="info-card full">
+
+            <p class="label">
+                🧠 ABOUT THE CAREER
+            </p>
+
+            <div class="value">
+                {{ info["description"] }}
+            </div>
+
+        </div>
+
+
+        <!-- VERIFIED INFORMATION -->
+
+        <div class="verified-card">
+
+            <p class="label">
+                ✓ INFORMATION NOTE
+            </p>
+
+            <div class="verified-text">
+                {{ info["verified_note"] }}
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ACTION -->
+
+    <div class="action-area">
+
+        <div class="action-text">
+            Explore the roadmap for this career, explore another career,
+            or return to the LIFECRAFT home screen.
+        </div>
+
+
+        <div class="buttons">
+
+
+            <!-- ROADMAP -->
+
+            <a
+                href="/roadmap/{{ career }}"
+                class="button roadmap-button"
+            >
+                🗺️ Roadmap of This Career →
+            </a>
+
+
+            <!-- BACK TO CAREERS -->
+
+            <a
+                href="/careers"
+                class="button back-button"
+            >
+                ← Back to Careers
+            </a>
+
+
+            <!-- HOME -->
+
+            <a
+                href="/"
+                class="button"
+            >
+                🏠 LIFECRAFT Home
+            </a>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+```
+
+</body>
+
+</html>

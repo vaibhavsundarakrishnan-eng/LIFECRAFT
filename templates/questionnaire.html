@@ -1,0 +1,2235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LIFECRAFT - Questionnaire</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at 50% -10%,
+                    #fffaf0 0%,
+                    #f5eedc 45%,
+                    #ede3cf 100%
+                );
+            color: #171511;
+            font-family: "Sora", sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           PREMIUM CREAM BACKGROUND
+        ========================= */
+
+        .grid {
+            position: fixed;
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(23, 21, 17, 0.045) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(23, 21, 17, 0.045) 1px,
+                    transparent 1px
+                );
+
+            background-size: 50px 50px;
+
+            animation: gridMove 18s linear infinite;
+
+            z-index: -3;
+
+            pointer-events: none;
+        }
+
+        @keyframes gridMove {
+
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(50px);
+            }
+
+        }
+
+
+        .glow {
+            position: fixed;
+
+            width: 650px;
+            height: 650px;
+
+            border-radius: 50%;
+
+            background: rgba(214, 193, 153, 0.25);
+
+            filter: blur(110px);
+
+            top: -320px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            z-index: -2;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .page {
+            width: 90%;
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding-bottom: 70px;
+        }
+
+
+        /* =========================
+           TOP BAR
+        ========================= */
+
+        .top-bar {
+            padding: 28px 0;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            border-bottom:
+                1px solid rgba(23, 21, 17, 0.12);
+        }
+
+
+        .brand {
+            font-size: 20px;
+
+            font-weight: 700;
+
+            letter-spacing: 4px;
+
+            color: #171511;
+        }
+
+
+        .step {
+            font-size: 11px;
+
+            font-weight: 600;
+
+            letter-spacing: 2px;
+
+            color: #6f6250;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            padding: 55px 0 35px;
+        }
+
+
+        .status {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            letter-spacing: 2px;
+
+            color: #6f6250;
+
+            margin-bottom: 20px;
+        }
+
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #171511;
+
+            box-shadow:
+                0 0 0 4px rgba(23, 21, 17, 0.08),
+                0 0 14px rgba(23, 21, 17, 0.18);
+
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+
+        @keyframes statusPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(0.72);
+                opacity: 0.55;
+            }
+
+        }
+
+
+        .header h1 {
+            font-size: clamp(30px, 5vw, 52px);
+
+            font-weight: 700;
+
+            letter-spacing: -1.5px;
+
+            line-height: 1.1;
+
+            margin-bottom: 15px;
+
+            color: #171511;
+        }
+
+
+        .header p {
+            max-width: 650px;
+
+            color: #756b5c;
+
+            line-height: 1.8;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        .section {
+            margin-top: 28px;
+
+            padding: 28px;
+
+            border:
+                1px solid rgba(23, 21, 17, 0.12);
+
+            background:
+                rgba(255, 252, 244, 0.68);
+
+            backdrop-filter: blur(20px);
+
+            -webkit-backdrop-filter: blur(20px);
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 20px 50px rgba(53, 44, 30, 0.10),
+                inset 0 1px 0 rgba(255, 255, 255, 0.85);
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+
+        .section:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 25px 60px rgba(53, 44, 30, 0.13),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
+
+        .section-heading {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 8px;
+        }
+
+
+        .section-title {
+            font-size: 18px;
+
+            font-weight: 700;
+
+            letter-spacing: -0.3px;
+
+            color: #171511;
+        }
+
+
+        .section-number {
+            color: #6f6250;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+        }
+
+
+        .section-description {
+            color: #756b5c;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =========================
+           GROUP GLASS CARDS
+        ========================= */
+
+        .group-glass {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .group-option {
+            position: relative;
+        }
+
+
+        .group-option input {
+            position: absolute;
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+
+        .group-option label {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            min-height: 100px;
+
+            padding: 20px;
+
+            border:
+                1px solid rgba(23, 21, 17, 0.12);
+
+            border-radius: 16px;
+
+            background:
+                rgba(255, 255, 255, 0.38);
+
+            cursor: pointer;
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+
+        .group-option label:hover {
+            border-color:
+                rgba(23, 21, 17, 0.28);
+
+            background:
+                rgba(255, 255, 255, 0.62);
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 14px 30px rgba(53, 44, 30, 0.10);
+        }
+
+
+        .group-option input:checked + label {
+            border-color: #171511;
+
+            background:
+                rgba(255, 255, 255, 0.75);
+
+            box-shadow:
+                0 16px 35px rgba(53, 44, 30, 0.13),
+                inset 0 0 0 1px rgba(23, 21, 17, 0.04);
+        }
+
+
+        .group-icon {
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            border-radius: 14px;
+
+            background:
+                rgba(23, 21, 17, 0.06);
+
+            border:
+                1px solid rgba(23, 21, 17, 0.08);
+
+            font-size: 25px;
+
+            flex-shrink: 0;
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease;
+        }
+
+
+        .group-option label:hover .group-icon {
+            transform: scale(1.06) rotate(-2deg);
+
+            background:
+                rgba(23, 21, 17, 0.09);
+        }
+
+
+        .group-option input:checked + label .group-icon {
+            background:
+                #171511;
+
+            color: #f5eedc;
+
+            transform: scale(1.04);
+        }
+
+
+        .group-text strong {
+            display: block;
+
+            font-size: 15px;
+
+            margin-bottom: 6px;
+
+            color: #171511;
+        }
+
+
+        .group-text span {
+            display: block;
+
+            color: #756b5c;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           SUBJECTS
+        ========================= */
+
+        .subject-group {
+            display: none;
+        }
+
+
+        .subject-group.active {
+            display: block;
+
+            animation: sectionReveal 0.35s ease;
+        }
+
+
+        @keyframes sectionReveal {
+
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .subject-group-title {
+            color: #6f6250;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .options {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+        }
+
+
+        .option {
+            position: relative;
+        }
+
+
+        .option input {
+            position: absolute;
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+
+        .option label {
+            display: block;
+
+            padding: 17px 14px;
+
+            text-align: center;
+
+            border:
+                1px solid rgba(23, 21, 17, 0.12);
+
+            border-radius: 12px;
+
+            color: #756b5c;
+
+            background:
+                rgba(255, 255, 255, 0.34);
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                background 0.25s ease,
+                box-shadow 0.25s ease,
+                color 0.25s ease;
+
+            font-size: 13px;
+        }
+
+
+        .option label:hover {
+            border-color:
+                rgba(23, 21, 17, 0.28);
+
+            color: #171511;
+
+            background:
+                rgba(255, 255, 255, 0.58);
+
+            transform: translateY(-2px);
+        }
+
+
+        .option input:checked + label {
+            color: #f5eedc;
+
+            border-color: #171511;
+
+            background: #171511;
+
+            box-shadow:
+                0 10px 25px rgba(23, 21, 17, 0.15);
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           INTEREST CARDS
+        ========================= */
+
+        .interest-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+        }
+
+
+        .interest {
+            position: relative;
+        }
+
+
+        .interest input {
+            position: absolute;
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+
+        .interest label {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            min-height: 70px;
+
+            padding: 14px;
+
+            border:
+                1px solid rgba(23, 21, 17, 0.12);
+
+            border-radius: 13px;
+
+            background:
+                rgba(255, 255, 255, 0.34);
+
+            color: #756b5c;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                background 0.25s ease,
+                box-shadow 0.25s ease,
+                color 0.25s ease;
+
+            font-size: 13px;
+        }
+
+
+        .interest label:hover {
+            border-color:
+                rgba(23, 21, 17, 0.28);
+
+            color: #171511;
+
+            background:
+                rgba(255, 255, 255, 0.58);
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 22px rgba(53, 44, 30, 0.08);
+        }
+
+
+        .interest input:checked + label {
+            color: #f5eedc;
+
+            border-color: #171511;
+
+            background: #171511;
+
+            box-shadow:
+                0 12px 26px rgba(23, 21, 17, 0.16);
+
+            transform: translateY(-2px);
+        }
+
+
+        .interest-icon {
+            font-size: 22px;
+
+            flex-shrink: 0;
+
+            transition:
+                transform 0.25s ease;
+        }
+
+
+        .interest label:hover .interest-icon {
+            transform: scale(1.08);
+        }
+
+
+        /* =========================
+           PREFERENCES
+        ========================= */
+
+        .preference-options {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 12px;
+        }
+
+
+        .preference-option {
+            position: relative;
+        }
+
+
+        .preference-option input {
+            position: absolute;
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+
+        .preference-option label {
+            display: block;
+
+            padding: 17px;
+
+            border:
+                1px solid rgba(23, 21, 17, 0.12);
+
+            border-radius: 12px;
+
+            background:
+                rgba(255, 255, 255, 0.34);
+
+            color: #756b5c;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                background 0.25s ease,
+                box-shadow 0.25s ease,
+                color 0.25s ease;
+        }
+
+
+        .preference-option label:hover {
+            border-color:
+                rgba(23, 21, 17, 0.28);
+
+            color: #171511;
+
+            background:
+                rgba(255, 255, 255, 0.58);
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 22px rgba(53, 44, 30, 0.08);
+        }
+
+
+        .preference-option input:checked + label {
+            color: #f5eedc;
+
+            border-color: #171511;
+
+            background: #171511;
+
+            box-shadow:
+                0 12px 26px rgba(23, 21, 17, 0.16);
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           BOTTOM
+        ========================= */
+
+        .bottom {
+            margin-top: 35px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+
+        .note {
+            color: #756b5c;
+
+            font-size: 11px;
+
+            line-height: 1.7;
+        }
+
+
+        .submit {
+            border: 1px solid #171511;
+
+            background: #171511;
+
+            color: #f5eedc;
+
+            padding: 15px 26px;
+
+            border-radius: 11px;
+
+            font-family: "Sora", sans-serif;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+
+            white-space: nowrap;
+        }
+
+
+        .submit:hover {
+            background: #29251f;
+
+            box-shadow:
+                0 16px 32px rgba(23, 21, 17, 0.22);
+
+            transform: translateY(-3px);
+        }
+
+
+        .submit:active {
+            transform: translateY(0);
+
+            box-shadow:
+                0 7px 15px rgba(23, 21, 17, 0.16);
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .group-glass {
+                grid-template-columns: 1fr;
+            }
+
+            .options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .interest-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .page {
+                width: 92%;
+            }
+
+
+            .section {
+                padding: 20px;
+
+                border-radius: 17px;
+            }
+
+
+            .header {
+                padding-top: 40px;
+            }
+
+
+            .header h1 {
+                letter-spacing: -1px;
+            }
+
+
+            .options,
+            .interest-grid,
+            .preference-options {
+                grid-template-columns: 1fr;
+            }
+
+
+            .bottom {
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .submit {
+                width: 100%;
+            }
+
+
+            .top-bar {
+                padding: 20px 0;
+            }
+
+
+            .brand {
+                font-size: 17px;
+
+                letter-spacing: 3px;
+            }
+
+
+            .step {
+                font-size: 9px;
+            }
+
+        }
+
+
+        /* =========================
+           REDUCED MOTION
+        ========================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="grid"></div>
+
+<div class="glow"></div>
+
+
+<div class="page">
+
+    <!-- TOP BAR -->
+
+    <div class="top-bar">
+
+        <div class="brand">
+            LIFECRAFT
+        </div>
+
+        <div class="step">
+            STEP 01 / PROFILE
+        </div>
+
+    </div>
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            AI DECISION ENGINE ACTIVE
+
+        </div>
+
+
+        <h1>
+            BUILD YOUR PROFILE
+        </h1>
+
+
+        <p>
+            Tell LIFECRAFT about your academic background,
+            interests and working preferences. Your choices
+            will shape the career compatibility analysis.
+        </p>
+
+    </div>
+
+
+    <form action="/analyze" method="POST">
+
+
+        <!-- =========================
+             01 GROUP
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div class="section-title">
+                    Academic Group
+                </div>
+
+                <div class="section-number">
+                    01
+                </div>
+
+            </div>
+
+
+            <p class="section-description">
+                Select the group you are currently studying.
+            </p>
+
+
+            <div class="group-glass">
+
+
+                <div class="group-option">
+
+                    <input
+                        type="radio"
+                        id="group_cs"
+                        name="group"
+                        value="computer_science"
+                        required
+                    >
+
+
+                    <label for="group_cs">
+
+                        <div class="group-icon">
+                            💻
+                        </div>
+
+
+                        <div class="group-text">
+
+                            <strong>
+                                Computer Science
+                            </strong>
+
+
+                            <span>
+                                Mathematics, Physics, Chemistry & Computer Science
+                            </span>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+
+                <div class="group-option">
+
+                    <input
+                        type="radio"
+                        id="group_bio"
+                        name="group"
+                        value="biology"
+                    >
+
+
+                    <label for="group_bio">
+
+                        <div class="group-icon">
+                            🧬
+                        </div>
+
+
+                        <div class="group-text">
+
+                            <strong>
+                                Biology
+                            </strong>
+
+
+                            <span>
+                                Physics, Chemistry, Biology & Mathematics
+                            </span>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+
+                <div class="group-option">
+
+                    <input
+                        type="radio"
+                        id="group_commerce"
+                        name="group"
+                        value="commerce"
+                    >
+
+
+                    <label for="group_commerce">
+
+                        <div class="group-icon">
+                            📊
+                        </div>
+
+
+                        <div class="group-text">
+
+                            <strong>
+                                Commerce
+                            </strong>
+
+
+                            <span>
+                                Accountancy, Economics & Business Studies
+                            </span>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+
+                <div class="group-option">
+
+                    <input
+                        type="radio"
+                        id="group_humanities"
+                        name="group"
+                        value="humanities"
+                    >
+
+
+                    <label for="group_humanities">
+
+                        <div class="group-icon">
+                            🌍
+                        </div>
+
+
+                        <div class="group-text">
+
+                            <strong>
+                                Humanities
+                            </strong>
+
+
+                            <span>
+                                History, Geography, Political Science & more
+                            </span>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             02 SUBJECTS
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div class="section-title">
+                    Academic Subjects
+                </div>
+
+                <div class="section-number">
+                    02
+                </div>
+
+            </div>
+
+
+            <p class="section-description">
+                Select the subjects you enjoy or feel interested in.
+                Only subjects from your selected group are shown.
+            </p>
+
+
+            <!-- COMPUTER SCIENCE -->
+
+            <div
+                class="subject-group"
+                id="subjects-computer_science"
+            >
+
+                <div class="subject-group-title">
+                    COMPUTER SCIENCE GROUP
+                </div>
+
+
+                <div class="options">
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="maths_cs"
+                            name="interest"
+                            value="maths"
+                        >
+
+                        <label for="maths_cs">
+                            Mathematics
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="physics_cs"
+                            name="interest"
+                            value="physics"
+                        >
+
+                        <label for="physics_cs">
+                            Physics
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="chemistry_cs"
+                            name="interest"
+                            value="chemistry"
+                        >
+
+                        <label for="chemistry_cs">
+                            Chemistry
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="computer_cs"
+                            name="interest"
+                            value="computer"
+                        >
+
+                        <label for="computer_cs">
+                            Computer Science
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="english_cs"
+                            name="interest"
+                            value="english"
+                        >
+
+                        <label for="english_cs">
+                            English
+                        </label>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- BIOLOGY -->
+
+            <div
+                class="subject-group"
+                id="subjects-biology"
+            >
+
+                <div class="subject-group-title">
+                    BIOLOGY GROUP
+                </div>
+
+
+                <div class="options">
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="physics_bio"
+                            name="interest"
+                            value="physics"
+                        >
+
+                        <label for="physics_bio">
+                            Physics
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="chemistry_bio"
+                            name="interest"
+                            value="chemistry"
+                        >
+
+                        <label for="chemistry_bio">
+                            Chemistry
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="biology_bio"
+                            name="interest"
+                            value="biology"
+                        >
+
+                        <label for="biology_bio">
+                            Biology
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="maths_bio"
+                            name="interest"
+                            value="maths"
+                        >
+
+                        <label for="maths_bio">
+                            Mathematics
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="english_bio"
+                            name="interest"
+                            value="english"
+                        >
+
+                        <label for="english_bio">
+                            English
+                        </label>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMERCE -->
+
+            <div
+                class="subject-group"
+                id="subjects-commerce"
+            >
+
+                <div class="subject-group-title">
+                    COMMERCE GROUP
+                </div>
+
+
+                <div class="options">
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="accountancy"
+                            name="interest"
+                            value="accountancy"
+                        >
+
+                        <label for="accountancy">
+                            Accountancy
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="economics"
+                            name="interest"
+                            value="economics"
+                        >
+
+                        <label for="economics">
+                            Economics
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="business_studies"
+                            name="interest"
+                            value="business_studies"
+                        >
+
+                        <label for="business_studies">
+                            Business Studies
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="maths_commerce"
+                            name="interest"
+                            value="maths"
+                        >
+
+                        <label for="maths_commerce">
+                            Mathematics
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="english_commerce"
+                            name="interest"
+                            value="english"
+                        >
+
+                        <label for="english_commerce">
+                            English
+                        </label>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- HUMANITIES -->
+
+            <div
+                class="subject-group"
+                id="subjects-humanities"
+            >
+
+                <div class="subject-group-title">
+                    HUMANITIES GROUP
+                </div>
+
+
+                <div class="options">
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="history"
+                            name="interest"
+                            value="history"
+                        >
+
+                        <label for="history">
+                            History
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="political_science"
+                            name="interest"
+                            value="political_science"
+                        >
+
+                        <label for="political_science">
+                            Political Science
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="geography"
+                            name="interest"
+                            value="geography"
+                        >
+
+                        <label for="geography">
+                            Geography
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="psychology"
+                            name="user_interest"
+                            value="psychology"
+                        >
+
+                        <label for="psychology">
+                            Psychology
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="sociology"
+                            name="interest"
+                            value="sociology"
+                        >
+
+                        <label for="sociology">
+                            Sociology
+                        </label>
+
+                    </div>
+
+
+                    <div class="option">
+
+                        <input
+                            type="checkbox"
+                            id="english_humanities"
+                            name="interest"
+                            value="english"
+                        >
+
+                        <label for="english_humanities">
+                            English
+                        </label>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             03 INTERESTS
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div class="section-title">
+                    Your Interests
+                </div>
+
+                <div class="section-number">
+                    03
+                </div>
+
+            </div>
+
+
+            <p class="section-description">
+                Forget what your subjects suggest for a moment.
+                Tell LIFECRAFT what you actually enjoy exploring.
+            </p>
+
+
+            <div class="interest-grid">
+
+
+                <div class="interest">
+
+                    <input
+                        type="checkbox"
+                        id="interest_technology"
+                        name="user_interest"
+                        value="technology"
+                    >
+
+                    <label for="interest_technology">
+
+                        <span class="interest-icon">
+                            💻
+                        </span>
+
+                        Technology & Computing
+
+                    </label>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <input
+                        type="checkbox"
+                        id="interest_math"
+                        name="user_interest"
+                        value="mathematics"
+                    >
+
+                    <label for="interest_math">
+
+                        <span class="interest-icon">
+                            🧮
+                        </span>
+
+                        Mathematics & Logic
+
+                    </label>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <input
+                        type="checkbox"
+                        id="interest_science"
+                        name="user_interest"
+                        value="science"
+                    >
+
+                    <label for="interest_science">
+
+                        <span class="interest-icon">
+                            🔬
+                        </span>
+
+                        Science & Discovery
+
+                    </label>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <input
+                        type="checkbox"
+                        id="interest_chemistry"
+                        name="user_interest"
+                        value="chemistry"
+                    >
+
+                    <label for="interest_chemistry">
+
+                        <span class="interest-icon">
+                            🧪
+                        </span>
+
+                        Chemistry & Materials
+
+                    </label>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <input
+                        type="checkbox"
+                        id="interest_biology"
+                        name="user_interest"
+                        value="biology"
+                    >
+
+                    <label for="interest_biology">
+
+                        <span class="interest-icon">
+                            🧬
+                        </span>
+
+                        Biology & Life Sciences
+
+                    </label>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <input
+                        type="checkbox"
+                        id="interest_business"
+                        name="user_interest"
+                        value="business"
+                    >
+
+                    <label for="interest_business">
+
+                        <span class="interest-icon">
+                            💰
+                        </span>
+
+                        Business & Finance
+
+                    </label>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <input
+                        type="checkbox"
+                        id="interest_law"
+                        name="user_interest"
+                        value="law"
+                    >
+
+                    <label for="interest_law">
+
+                        <span class="interest-icon">
+                            ⚖️
+                        </span>
+
+                        Law & Society
+
+                    </label>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <input
+                        type="checkbox"
+                        id="interest_design"
+                        name="user_interest"
+                        value="design"
+                    >
+
+                    <label for="interest_design">
+
+                        <span class="interest-icon">
+                            🎨
+                        </span>
+
+                        Design & Creativity
+
+                    </label>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <input
+                        type="checkbox"
+                        id="interest_engineering"
+                        name="user_interest"
+                        value="engineering"
+                    >
+
+                    <label for="interest_engineering">
+
+                        <span class="interest-icon">
+                            🏗️
+                        </span>
+
+                        Engineering & Machines
+
+                    </label>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <input
+                        type="checkbox"
+                        id="interest_communication"
+                        name="user_interest"
+                        value="communication"
+                    >
+
+                    <label for="interest_communication">
+
+                        <span class="interest-icon">
+                            🗣️
+                        </span>
+
+                        Communication & Media
+
+                    </label>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <input
+                        type="checkbox"
+                        id="interest_research"
+                        name="user_interest"
+                        value="research"
+                    >
+
+                    <label for="interest_research">
+
+                        <span class="interest-icon">
+                            🔎
+                        </span>
+
+                        Research & Investigation
+
+                    </label>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <input
+                        type="checkbox"
+                        id="interest_people"
+                        name="user_interest"
+                        value="people"
+                    >
+
+                    <label for="interest_people">
+
+                        <span class="interest-icon">
+                            👥
+                        </span>
+
+                        People & Leadership
+
+                    </label>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <input
+                        type="checkbox"
+                        id="interest_environment"
+                        name="user_interest"
+                        value="environment"
+                    >
+
+                    <label for="interest_environment">
+
+                        <span class="interest-icon">
+                            🌍
+                        </span>
+
+                        Environment & Geography
+
+                    </label>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <input
+                        type="checkbox"
+                        id="interest_psychology"
+                        name="user_interest"
+                        value="psychology"
+                    >
+
+                    <label for="interest_psychology">
+
+                        <span class="interest-icon">
+                            🧠
+                        </span>
+
+                        Psychology & Behaviour
+
+                    </label>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <input
+                        type="checkbox"
+                        id="interest_education"
+                        name="user_interest"
+                        value="education"
+                    >
+
+                    <label for="interest_education">
+
+                        <span class="interest-icon">
+                            📚
+                        </span>
+
+                        Teaching & Education
+
+                    </label>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             04 WORK PREFERENCE
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div class="section-title">
+                    Work Preference
+                </div>
+
+                <div class="section-number">
+                    04
+                </div>
+
+            </div>
+
+
+            <p class="section-description">
+                How do you naturally prefer to work?
+                Choose the option that feels closest to you.
+            </p>
+
+
+            <div class="preference-options">
+
+
+                <div class="preference-option">
+
+                    <input
+                        type="radio"
+                        id="analytical"
+                        name="preference"
+                        value="analytical"
+                        required
+                    >
+
+                    <label for="analytical">
+                        🧠 Analytical & Logical
+                    </label>
+
+                </div>
+
+
+                <div class="preference-option">
+
+                    <input
+                        type="radio"
+                        id="creative"
+                        name="preference"
+                        value="creative"
+                    >
+
+                    <label for="creative">
+                        🎨 Creative & Imaginative
+                    </label>
+
+                </div>
+
+
+                <div class="preference-option">
+
+                    <input
+                        type="radio"
+                        id="team"
+                        name="preference"
+                        value="team"
+                    >
+
+                    <label for="team">
+                        🤝 Team & Collaboration
+                    </label>
+
+                </div>
+
+
+                <div class="preference-option">
+
+                    <input
+                        type="radio"
+                        id="independent"
+                        name="preference"
+                        value="independent"
+                    >
+
+                    <label for="independent">
+                        🧑‍💻 Independent & Focused
+                    </label>
+
+                </div>
+
+
+                <div class="preference-option">
+
+                    <input
+                        type="radio"
+                        id="leadership"
+                        name="preference"
+                        value="leadership"
+                    >
+
+                    <label for="leadership">
+                        👑 Leadership & Decision Making
+                    </label>
+
+                </div>
+
+
+                <div class="preference-option">
+
+                    <input
+                        type="radio"
+                        id="people"
+                        name="preference"
+                        value="people"
+                    >
+
+                    <label for="people">
+                        ❤️ People & Service
+                    </label>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SUBMIT
+        ========================= -->
+
+        <div class="bottom">
+
+            <div class="note">
+
+                Your answers are used only for this
+                educational career simulation.
+
+                <br>
+
+                LIFECRAFT does not determine your future.
+                It helps you explore possibilities.
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit"
+            >
+                ANALYZE MY PROFILE →
+            </button>
+
+        </div>
+
+
+    </form>
+
+</div>
+
+
+<script>
+
+    /* =================================
+       GROUP → SUBJECT DISPLAY
+    ================================= */
+
+    const groupInputs =
+        document.querySelectorAll(
+            'input[name="group"]'
+        );
+
+
+    const subjectGroups =
+        document.querySelectorAll(
+            '.subject-group'
+        );
+
+
+    groupInputs.forEach(function(input) {
+
+        input.addEventListener(
+            'change',
+            function() {
+
+                subjectGroups.forEach(
+                    function(section) {
+
+                        section.classList.remove(
+                            'active'
+                        );
+
+
+                        section
+                            .querySelectorAll(
+                                'input[type="checkbox"]'
+                            )
+                            .forEach(
+                                function(box) {
+
+                                    box.checked = false;
+
+                                }
+                            );
+
+                    }
+                );
+
+
+                const selectedGroup =
+                    document.getElementById(
+                        'subjects-' + input.value
+                    );
+
+
+                if (selectedGroup) {
+
+                    selectedGroup.classList.add(
+                        'active'
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+</script>
+
+</body>
+</html>

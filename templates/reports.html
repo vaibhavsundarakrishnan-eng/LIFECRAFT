@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LIFECRAFT - Previous Reports</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background: #F5EEDC;
+            color: #171512;
+
+            font-family: "Inter", sans-serif;
+        }
+
+        /* BACKGROUND */
+
+        .background {
+            position: fixed;
+            inset: 0;
+
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .grid {
+            position: absolute;
+
+            width: 200%;
+            height: 200%;
+
+            left: -50%;
+            top: -35%;
+
+            background-image:
+                linear-gradient(
+                    rgba(23, 21, 18, 0.07) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(23, 21, 18, 0.07) 1px,
+                    transparent 1px
+                );
+
+            background-size: 55px 55px;
+
+            transform:
+                perspective(600px)
+                rotateX(60deg);
+
+            animation: gridMove 12s linear infinite;
+        }
+
+        @keyframes gridMove {
+
+            from {
+                transform:
+                    perspective(600px)
+                    rotateX(60deg)
+                    translateY(0);
+            }
+
+            to {
+                transform:
+                    perspective(600px)
+                    rotateX(60deg)
+                    translateY(55px);
+            }
+        }
+
+        .glow {
+            position: absolute;
+
+            width: 450px;
+            height: 450px;
+
+            border-radius: 50%;
+
+            background: rgba(23, 21, 18, 0.08);
+
+            filter: blur(85px);
+
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .glow.one {
+            top: -180px;
+            left: -120px;
+        }
+
+        .glow.two {
+            right: -180px;
+            bottom: -180px;
+
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(35px, -25px);
+            }
+        }
+
+        /* PAGE */
+
+        .page {
+            position: relative;
+
+            z-index: 5;
+
+            width: min(1100px, 90%);
+
+            margin: auto;
+
+            padding: 45px 0 70px;
+        }
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 70px;
+        }
+
+        .brand {
+            font-family: "Orbitron", sans-serif;
+
+            font-size: 26px;
+
+            font-weight: 900;
+
+            letter-spacing: 4px;
+        }
+
+        .back {
+            padding: 11px 20px;
+
+            border-radius: 12px;
+
+            border:
+                1px solid rgba(23, 21, 18, 0.15);
+
+            background:
+                rgba(255, 255, 255, 0.35);
+
+            backdrop-filter: blur(15px);
+
+            color: #171512;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.25s ease;
+        }
+
+        .back:hover {
+            background: #171512;
+
+            color: #F5EEDC;
+
+            transform: translateY(-2px);
+        }
+
+        /* TITLE */
+
+        .title {
+            margin-bottom: 45px;
+
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .title h1 {
+            margin: 0;
+
+            font-family: "Orbitron", sans-serif;
+
+            font-size: clamp(35px, 5vw, 58px);
+
+            letter-spacing: 2px;
+        }
+
+        .title p {
+            margin-top: 15px;
+
+            opacity: 0.6;
+
+            font-size: 16px;
+        }
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* REPORT CARD */
+
+        .report-card {
+            margin-bottom: 25px;
+
+            padding: 30px;
+
+            background:
+                rgba(255, 255, 255, 0.40);
+
+            border:
+                1px solid rgba(23, 21, 18, 0.14);
+
+            border-radius: 22px;
+
+            backdrop-filter: blur(18px);
+
+            -webkit-backdrop-filter: blur(18px);
+
+            box-shadow:
+                0 18px 45px rgba(0, 0, 0, 0.08);
+
+            animation: cardAppear 0.8s ease both;
+
+            transition: 0.3s ease;
+        }
+
+        .report-card:hover {
+            transform: translateY(-5px);
+
+            background:
+                rgba(255, 255, 255, 0.55);
+
+            box-shadow:
+                0 25px 55px rgba(0, 0, 0, 0.12);
+        }
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .report-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+        .report-number {
+            font-family: "Orbitron", sans-serif;
+
+            font-size: 14px;
+
+            letter-spacing: 2px;
+
+            opacity: 0.55;
+        }
+
+        .report-label {
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            background: rgba(23, 21, 18, 0.08);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+        }
+
+        /* CAREERS */
+
+        .careers {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+        .career {
+            padding: 22px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(255, 255, 255, 0.38);
+
+            border:
+                1px solid rgba(23, 21, 18, 0.10);
+
+            transition: 0.25s ease;
+        }
+
+        .career:hover {
+            transform: translateY(-3px);
+
+            background:
+                rgba(255, 255, 255, 0.62);
+        }
+
+        .rank {
+            font-family: "Orbitron", sans-serif;
+
+            font-size: 13px;
+
+            opacity: 0.5;
+
+            letter-spacing: 1px;
+        }
+
+        .career-name {
+            margin-top: 12px;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            line-height: 1.4;
+        }
+
+        .score {
+            margin-top: 15px;
+
+            font-family: "Orbitron", sans-serif;
+
+            font-size: 25px;
+
+            font-weight: 800;
+        }
+
+        .score-label {
+            font-size: 12px;
+
+            opacity: 0.5;
+        }
+
+        /* EMPTY */
+
+        .empty {
+            padding: 55px 30px;
+
+            text-align: center;
+
+            background:
+                rgba(255, 255, 255, 0.40);
+
+            border:
+                1px solid rgba(23, 21, 18, 0.14);
+
+            border-radius: 22px;
+
+            backdrop-filter: blur(18px);
+
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .empty-icon {
+            font-size: 45px;
+
+            margin-bottom: 15px;
+        }
+
+        .empty h2 {
+            font-family: "Orbitron", sans-serif;
+
+            font-size: 22px;
+        }
+
+        .empty p {
+            opacity: 0.6;
+
+            margin-bottom: 25px;
+        }
+
+        .start-button {
+            display: inline-block;
+
+            padding: 14px 24px;
+
+            border-radius: 12px;
+
+            background: #171512;
+
+            color: #F5EEDC;
+
+            text-decoration: none;
+
+            font-family: "Orbitron", sans-serif;
+
+            font-size: 13px;
+
+            letter-spacing: 1px;
+
+            transition: 0.25s ease;
+        }
+
+        .start-button:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 25px rgba(0, 0, 0, 0.18);
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .page {
+                width: 92%;
+            }
+
+            .header {
+                margin-bottom: 50px;
+            }
+
+            .careers {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="background">
+
+        <div class="grid"></div>
+
+        <div class="glow one"></div>
+
+        <div class="glow two"></div>
+
+    </div>
+
+
+    <main class="page">
+
+        <header class="header">
+
+            <div class="brand">
+                LIFECRAFT
+            </div>
+
+            <a
+                href="/dashboard"
+                class="back"
+            >
+                ← DASHBOARD
+            </a>
+
+        </header>
+
+
+        <section class="title">
+
+            <h1>
+                PREVIOUS REPORTS
+            </h1>
+
+            <p>
+                Your saved career simulation results.
+            </p>
+
+        </section>
+
+
+        {% if reports %}
+
+            {% for report in reports %}
+
+                <div class="report-card">
+
+                    <div class="report-header">
+
+                        <div class="report-number">
+                            REPORT #{{ report.id }}
+                        </div>
+
+                        <div class="report-label">
+                            CAREER ANALYSIS
+                        </div>
+
+                    </div>
+
+
+                    <div class="careers">
+
+                        <div class="career">
+
+                            <div class="rank">
+                                #01
+                            </div>
+
+                            <div class="career-name">
+                                {{ report.career1 }}
+                            </div>
+
+                            <div class="score">
+                                {{ report.score1 }}%
+                            </div>
+
+                            <div class="score-label">
+                                MATCH SCORE
+                            </div>
+
+                        </div>
+
+
+                        <div class="career">
+
+                            <div class="rank">
+                                #02
+                            </div>
+
+                            <div class="career-name">
+                                {{ report.career2 }}
+                            </div>
+
+                            <div class="score">
+                                {{ report.score2 }}%
+                            </div>
+
+                            <div class="score-label">
+                                MATCH SCORE
+                            </div>
+
+                        </div>
+
+
+                        <div class="career">
+
+                            <div class="rank">
+                                #03
+                            </div>
+
+                            <div class="career-name">
+                                {{ report.career3 }}
+                            </div>
+
+                            <div class="score">
+                                {{ report.score3 }}%
+                            </div>
+
+                            <div class="score-label">
+                                MATCH SCORE
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📊
+                </div>
+
+                <h2>
+                    NO REPORTS YET
+                </h2>
+
+                <p>
+                    Complete your first career simulation
+                    to generate a report.
+                </p>
+
+                <a
+                    href="/questionnaire"
+                    class="start-button"
+                >
+                    START SIMULATION →
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </main>
+
+</body>
+
+</html>

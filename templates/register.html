@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LIFECRAFT - Create Account</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: #F5EEDC;
+
+            color: #171512;
+
+            font-family: "Inter", sans-serif;
+
+            overflow: hidden;
+        }
+
+        /* =========================
+           ANIMATED BACKGROUND
+        ========================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+
+            overflow: hidden;
+
+            pointer-events: none;
+        }
+
+        .grid {
+            position: absolute;
+
+            width: 200%;
+            height: 200%;
+
+            left: -50%;
+            top: -35%;
+
+            background-image:
+                linear-gradient(
+                    rgba(23, 21, 18, 0.07) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(23, 21, 18, 0.07) 1px,
+                    transparent 1px
+                );
+
+            background-size: 55px 55px;
+
+            transform:
+                perspective(600px)
+                rotateX(60deg);
+
+            animation: gridMove 12s linear infinite;
+        }
+
+        @keyframes gridMove {
+
+            from {
+                transform:
+                    perspective(600px)
+                    rotateX(60deg)
+                    translateY(0);
+            }
+
+            to {
+                transform:
+                    perspective(600px)
+                    rotateX(60deg)
+                    translateY(55px);
+            }
+        }
+
+        /* =========================
+           GLOW
+        ========================= */
+
+        .glow {
+            position: absolute;
+
+            width: 450px;
+            height: 450px;
+
+            border-radius: 50%;
+
+            background: rgba(23, 21, 18, 0.08);
+
+            filter: blur(85px);
+
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .glow.one {
+            top: -180px;
+            left: -120px;
+        }
+
+        .glow.two {
+            right: -180px;
+            bottom: -180px;
+
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(35px, -25px);
+            }
+        }
+
+        /* =========================
+           MAIN PAGE
+        ========================= */
+
+        .page {
+            position: relative;
+
+            z-index: 5;
+
+            width: 100%;
+            min-height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 40px;
+        }
+
+        /* =========================
+           BRAND
+        ========================= */
+
+        .brand {
+            margin: 0;
+
+            font-family: "Orbitron", sans-serif;
+
+            font-size: clamp(55px, 9vw, 105px);
+
+            font-weight: 900;
+
+            letter-spacing: 12px;
+
+            line-height: 1;
+
+            text-align: center;
+
+            text-shadow:
+                0 0 20px rgba(23, 21, 18, 0.15),
+                0 0 50px rgba(23, 21, 18, 0.08);
+
+            animation: brandAppear 1.2s ease forwards;
+        }
+
+        @keyframes brandAppear {
+
+            from {
+                opacity: 0;
+
+                transform: translateY(-30px);
+
+                letter-spacing: 25px;
+            }
+
+            to {
+                opacity: 1;
+
+                transform: translateY(0);
+
+                letter-spacing: 12px;
+            }
+        }
+
+        /* =========================
+           TAGLINE
+        ========================= */
+
+        .tagline {
+            margin-top: 18px;
+
+            margin-bottom: 40px;
+
+            font-size: clamp(14px, 1.6vw, 19px);
+
+            font-weight: 600;
+
+            letter-spacing: 4px;
+
+            text-align: center;
+
+            opacity: 0.65;
+
+            animation: fadeUp 1s ease 0.3s both;
+        }
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           REGISTER CARD
+        ========================= */
+
+        .register-box {
+            width: min(480px, 92%);
+
+            padding: 42px 48px;
+
+            background:
+                rgba(255, 255, 255, 0.52);
+
+            border:
+                1px solid rgba(23, 21, 18, 0.14);
+
+            border-radius: 24px;
+
+            backdrop-filter: blur(20px);
+
+            -webkit-backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.13);
+
+            animation: cardAppear 1s ease 0.5s both;
+        }
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(35px)
+                    scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+        .register-title {
+            margin: 0 0 8px;
+
+            text-align: center;
+
+            font-family: "Orbitron", sans-serif;
+
+            font-size: 27px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+        }
+
+        .register-subtitle {
+            margin-bottom: 30px;
+
+            text-align: center;
+
+            font-size: 14px;
+
+            opacity: 0.65;
+        }
+
+        /* =========================
+           INPUTS
+        ========================= */
+
+        label {
+            display: block;
+
+            margin-bottom: 9px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.5px;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 15px 16px;
+
+            border:
+                1px solid rgba(23, 21, 18, 0.18);
+
+            border-radius: 12px;
+
+            background:
+                rgba(255, 255, 255, 0.72);
+
+            color: #171512;
+
+            outline: none;
+
+            font-family: "Inter", sans-serif;
+
+            font-size: 16px;
+
+            transition: 0.25s ease;
+        }
+
+        input:focus {
+            border-color: #171512;
+
+            background: rgba(255, 255, 255, 0.9);
+
+            box-shadow:
+                0 0 0 3px rgba(23, 21, 18, 0.07);
+        }
+
+        /* =========================
+           REGISTER BUTTON
+        ========================= */
+
+        .register-button {
+            width: 100%;
+
+            margin-top: 24px;
+
+            padding: 16px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #171512;
+
+            color: #F5EEDC;
+
+            font-family: "Orbitron", sans-serif;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .register-button:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 14px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .register-button:active {
+            transform: translateY(0);
+        }
+
+        /* =========================
+           BACK TO LOGIN
+        ========================= */
+
+        .login-section {
+            margin-top: 25px;
+
+            text-align: center;
+
+            font-size: 14px;
+
+            opacity: 0.75;
+        }
+
+        .login-link {
+            color: #171512;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            margin-left: 4px;
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .page {
+                padding: 25px;
+            }
+
+            .brand {
+                letter-spacing: 6px;
+            }
+
+            .tagline {
+                letter-spacing: 2px;
+
+                margin-bottom: 30px;
+            }
+
+            .register-box {
+                padding: 32px 25px;
+            }
+
+            .register-title {
+                font-size: 23px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+
+    <div class="background">
+
+        <div class="grid"></div>
+
+        <div class="glow one"></div>
+
+        <div class="glow two"></div>
+
+    </div>
+
+
+    <!-- Main Page -->
+
+    <main class="page">
+
+        <h1 class="brand">
+            LIFECRAFT
+        </h1>
+
+        <div class="tagline">
+            CAREER & FINANCIAL DECISION SIMULATOR
+        </div>
+
+
+        <!-- Register -->
+
+        <div class="register-box">
+
+            <h2 class="register-title">
+                CREATE ACCOUNT
+            </h2>
+
+            <div class="register-subtitle">
+                Start your LIFECRAFT journey
+            </div>
+
+            <form action="/register" method="POST">
+
+                <label>
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    name="username"
+                    required
+                >
+
+                <br><br>
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="register-button"
+                >
+                    CREATE ACCOUNT →
+                </button>
+
+            </form>
+
+
+            <div class="login-section">
+
+                Already have an account?
+
+                <a
+                    href="/"
+                    class="login-link"
+                >
+                    Back to Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

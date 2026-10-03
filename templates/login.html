@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LIFECRAFT | Login</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #F5EEDC;
+            color: #171512;
+            font-family: "Inter", sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           BACKGROUND GRID
+        ========================= */
+
+        .grid {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.22;
+            background-image:
+                linear-gradient(rgba(23,21,18,0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(23,21,18,0.12) 1px, transparent 1px);
+            background-size: 55px 55px;
+            transform: perspective(500px) rotateX(60deg) scale(2);
+            transform-origin: center bottom;
+            animation: gridMove 12s linear infinite;
+        }
+
+        @keyframes gridMove {
+            from {
+                transform: perspective(500px) rotateX(60deg)
+                           scale(2) translateY(0);
+            }
+
+            to {
+                transform: perspective(500px) rotateX(60deg)
+                           scale(2) translateY(55px);
+            }
+        }
+
+        /* =========================
+           GLOW ORBS
+        ========================= */
+
+        .glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            opacity: 0.35;
+        }
+
+        .glow.one {
+            width: 300px;
+            height: 300px;
+            background: #ffffff;
+            top: -100px;
+            left: -80px;
+        }
+
+        .glow.two {
+            width: 350px;
+            height: 350px;
+            background: #d9c8a5;
+            right: -120px;
+            bottom: -100px;
+        }
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+            position: relative;
+            z-index: 2;
+
+            width: min(1100px, 92%);
+            margin: auto;
+
+            padding: 70px 0 80px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* =========================
+           BRAND
+        ========================= */
+
+        .brand {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .brand h1 {
+            font-family: "Orbitron", sans-serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            letter-spacing: 8px;
+            font-weight: 800;
+        }
+
+        .brand p {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            font-weight: 600;
+            opacity: 0.65;
+        }
+
+        /* =========================
+           GLASS CARD
+        ========================= */
+
+        .glass {
+            width: 100%;
+            max-width: 470px;
+
+            padding: 38px;
+
+            background: rgba(255,255,255,0.42);
+            border: 1px solid rgba(23,21,18,0.14);
+
+            border-radius: 28px;
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            box-shadow:
+                0 25px 60px rgba(23,21,18,0.12),
+                inset 0 1px 0 rgba(255,255,255,0.7);
+
+            transition: 0.3s ease;
+        }
+
+        .glass:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 30px 70px rgba(23,21,18,0.16),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .login-title {
+            font-family: "Orbitron", sans-serif;
+            text-align: center;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+        }
+
+        /* =========================
+           INPUTS
+        ========================= */
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 8px;
+
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .field input {
+            width: 100%;
+
+            padding: 15px 16px;
+
+            border: 1px solid rgba(23,21,18,0.18);
+            border-radius: 14px;
+
+            background: rgba(255,255,255,0.55);
+
+            color: #171512;
+
+            font-size: 1rem;
+            outline: none;
+
+            transition: 0.25s ease;
+        }
+
+        .field input:focus {
+            border-color: #171512;
+            background: rgba(255,255,255,0.8);
+
+            box-shadow:
+                0 0 0 3px rgba(23,21,18,0.07);
+        }
+
+        /* =========================
+           LOGIN BUTTON
+        ========================= */
+
+        .login-btn {
+            width: 100%;
+
+            margin-top: 8px;
+            padding: 15px;
+
+            border: 1px solid #171512;
+            border-radius: 14px;
+
+            background: #171512;
+            color: #F5EEDC;
+
+            font-family: "Orbitron", sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background: transparent;
+            color: #171512;
+
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           REGISTER LINK
+        ========================= */
+
+        .register {
+            text-align: center;
+            margin-top: 22px;
+
+            font-size: 0.9rem;
+            opacity: 0.75;
+        }
+
+        .register a {
+            color: #171512;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px solid #171512;
+        }
+
+        /* =========================
+           ABOUT SECTION
+        ========================= */
+
+        .section {
+            width: 100%;
+            margin-top: 70px;
+        }
+
+        .section-heading {
+            text-align: center;
+
+            font-family: "Orbitron", sans-serif;
+            font-size: 1.25rem;
+            letter-spacing: 4px;
+
+            margin-bottom: 25px;
+        }
+
+        .about-card {
+            max-width: 900px;
+            margin: auto;
+
+            padding: 35px;
+
+            background: rgba(255,255,255,0.34);
+            border: 1px solid rgba(23,21,18,0.13);
+
+            border-radius: 25px;
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            box-shadow:
+                0 20px 50px rgba(23,21,18,0.08),
+                inset 0 1px 0 rgba(255,255,255,0.65);
+
+            text-align: center;
+        }
+
+        .about-card p {
+            max-width: 780px;
+            margin: auto;
+
+            line-height: 1.8;
+            font-size: 0.95rem;
+            opacity: 0.78;
+        }
+
+        .about-card strong {
+            color: #171512;
+            opacity: 1;
+        }
+
+        /* =========================
+           TEAM
+        ========================= */
+
+        .team-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            width: 100%;
+        }
+
+        .member {
+            padding: 28px 22px;
+
+            text-align: center;
+
+            background: rgba(255,255,255,0.34);
+            border: 1px solid rgba(23,21,18,0.13);
+
+            border-radius: 22px;
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            box-shadow:
+                0 18px 40px rgba(23,21,18,0.07),
+                inset 0 1px 0 rgba(255,255,255,0.65);
+
+            transition: 0.3s ease;
+        }
+
+        .member:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 25px 55px rgba(23,21,18,0.13),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .member h3 {
+            font-family: "Orbitron", sans-serif;
+
+            font-size: 0.95rem;
+            letter-spacing: 1.5px;
+
+            margin-bottom: 10px;
+        }
+
+        .member span {
+            display: inline-block;
+
+            padding: 7px 12px;
+
+            border: 1px solid rgba(23,21,18,0.15);
+            border-radius: 50px;
+
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+
+            background: rgba(255,255,255,0.35);
+        }
+
+        /* =========================
+           TAGLINE
+        ========================= */
+
+        .tagline {
+            margin-top: 60px;
+
+            text-align: center;
+
+            font-family: "Orbitron", sans-serif;
+
+            font-size: clamp(0.85rem, 2vw, 1.1rem);
+
+            letter-spacing: 3px;
+            line-height: 1.7;
+
+            opacity: 0.75;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            .container {
+                padding-top: 45px;
+            }
+
+            .brand h1 {
+                letter-spacing: 5px;
+            }
+
+            .brand p {
+                letter-spacing: 2px;
+                line-height: 1.6;
+            }
+
+            .glass {
+                padding: 28px 22px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-card {
+                padding: 28px 22px;
+            }
+
+            .section {
+                margin-top: 55px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="grid"></div>
+
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+
+    <main class="container">
+
+        <!-- =========================
+             BRAND
+        ========================== -->
+
+        <section class="brand">
+
+            <h1>LIFECRAFT</h1>
+
+            <p>
+                CAREER & FINANCIAL DECISION SIMULATOR
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             LOGIN
+        ========================== -->
+
+        <section class="glass">
+
+            <h2 class="login-title">
+                LOGIN
+            </h2>
+
+            <form action="/login" method="POST">
+
+                <div class="field">
+
+                    <label>
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Enter your username"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                >
+                    LOGIN
+                </button>
+
+            </form>
+
+
+            <div class="register">
+
+                Don't have an account?
+
+                <a href="/register">
+                    Create Account
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ABOUT LIFECRAFT
+        ========================== -->
+
+        <section class="section">
+
+            <h2 class="section-heading">
+                ABOUT LIFECRAFT
+            </h2>
+
+
+            <div class="about-card">
+
+                <p>
+
+                    <strong>LifeCraft</strong> is an interactive career
+                    and financial life-simulation platform designed
+                    to help users explore how their decisions can
+                    shape their future.
+
+                    <br><br>
+
+                    The platform combines a
+                    <strong>career recommendation system</strong>
+                    with a <strong>financial simulator</strong>.
+
+                    Based on a user's interests, strengths, and
+                    preferences, LifeCraft recommends suitable
+                    career paths and provides insights into why
+                    they may be a good fit.
+
+                    <br><br>
+
+                    Users can then experience the financial side
+                    of their choices by managing simulated income,
+                    expenses, savings, investments, and unexpected
+                    life events.
+
+                    <br><br>
+
+                    Rather than simply predicting a future,
+                    LifeCraft allows users to
+                    <strong>explore different possibilities and
+                    see the consequences of their decisions.</strong>
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TEAM CREDITS
+        ========================== -->
+
+        <section class="section">
+
+            <h2 class="section-heading">
+                TEAM CREDITS
+            </h2>
+
+
+            <div class="team-grid">
+
+
+                <!-- HARSHAVARDHAN -->
+
+                <div class="member">
+
+                    <h3>
+                        HARSHAVARDHAN K
+                    </h3>
+
+                    <span>
+                        CONCEPT & BACKEND
+                    </span>
+
+                </div>
+
+
+                <!-- VAIBHAV -->
+
+                <div class="member">
+
+                    <h3>
+                        VAIBHAV S
+                    </h3>
+
+                    <span>
+                        AI & SIMULATION
+                    </span>
+
+                </div>
+
+
+                <!-- SIDDESH -->
+
+                <div class="member">
+
+                    <h3>
+                        SIDDESH S
+                    </h3>
+
+                    <span>
+                        AUTHENTICATION & NAVIGATION
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TAGLINE
+        ========================== -->
+
+        <div class="tagline">
+
+            LifeCraft — Explore. Decide. Simulate.
+            Build Your Future.
+
+        </div>
+
+
+    </main>
+
+</body>
+</html>

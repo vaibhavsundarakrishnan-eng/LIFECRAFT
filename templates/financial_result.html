@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>LIFECRAFT - Financial Results</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Sora", sans-serif;
+
+        background:
+            radial-gradient(
+                circle at 50% -15%,
+                #fffdf7 0%,
+                #f8f0df 38%,
+                #eee2cb 75%,
+                #e5d6bc 100%
+            );
+
+        color: #171511;
+        padding: 45px 20px;
+        overflow-x: hidden;
+    }
+
+    /* =========================
+       BACKGROUND
+    ========================= */
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+
+        background-image:
+            linear-gradient(
+                rgba(23, 21, 17, 0.035) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                90deg,
+                rgba(23, 21, 17, 0.035) 1px,
+                transparent 1px
+            );
+
+        background-size: 45px 45px;
+        animation: gridMove 20s linear infinite;
+
+        pointer-events: none;
+        z-index: -3;
+    }
+
+    @keyframes gridMove {
+        from {
+            transform: translateY(0);
+        }
+
+        to {
+            transform: translateY(45px);
+        }
+    }
+
+    /* =========================
+       GLOW
+    ========================= */
+
+    body::after {
+        content: "";
+        position: fixed;
+
+        width: 700px;
+        height: 700px;
+
+        border-radius: 50%;
+
+        background:
+            rgba(211, 183, 126, 0.20);
+
+        filter: blur(130px);
+
+        top: -420px;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        pointer-events: none;
+        z-index: -2;
+    }
+
+    /* =========================
+       CONTAINER
+    ========================= */
+
+    .container {
+        width: 100%;
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header {
+        text-align: center;
+        margin-bottom: 38px;
+        animation: fadeUp 0.7s ease both;
+    }
+
+    .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        padding: 9px 16px;
+        border-radius: 30px;
+
+        background:
+            rgba(255, 255, 255, 0.55);
+
+        border:
+            1px solid rgba(23, 21, 17, 0.14);
+
+        color: #625746;
+
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1.8px;
+
+        margin-bottom: 20px;
+
+        box-shadow:
+            0 8px 25px rgba(53, 44, 30, 0.06);
+    }
+
+    h1 {
+        margin: 0;
+
+        font-size: 44px;
+        letter-spacing: -1.5px;
+
+        color: #171511;
+    }
+
+    .subtitle {
+        color: #756b5c;
+        margin-top: 10px;
+        font-size: 13px;
+    }
+
+    /* =========================
+       GLASS BOX
+    ========================= */
+
+    .glass-box {
+        background:
+            rgba(255, 253, 247, 0.70);
+
+        border:
+            1px solid rgba(23, 21, 17, 0.13);
+
+        border-radius: 24px;
+
+        padding: 30px;
+        margin-bottom: 25px;
+
+        box-shadow:
+            0 20px 50px rgba(53, 44, 30, 0.09),
+            inset 0 1px 0 rgba(255, 255, 255, 0.90);
+
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+
+        animation: fadeUp 0.7s ease both;
+    }
+
+    .section-title {
+        margin-top: 0;
+        margin-bottom: 22px;
+
+        font-size: 20px;
+        color: #171511;
+    }
+
+    /* =========================
+       SUMMARY CARDS
+    ========================= */
+
+    .summary-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 18px;
+    }
+
+    .summary-card {
+        padding: 23px;
+
+        background:
+            rgba(255, 255, 255, 0.60);
+
+        border:
+            1px solid rgba(23, 21, 17, 0.10);
+
+        border-radius: 17px;
+
+        box-shadow:
+            0 8px 20px rgba(53, 44, 30, 0.04);
+
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+    }
+
+    .summary-card:hover {
+        transform: translateY(-5px);
+
+        box-shadow:
+            0 16px 32px rgba(53, 44, 30, 0.11);
+    }
+
+    .icon {
+        font-size: 25px;
+        margin-bottom: 11px;
+    }
+
+    .card-label {
+        color: #756b5c;
+
+        font-size: 10px;
+        font-weight: 700;
+
+        letter-spacing: 1.5px;
+    }
+
+    .card-value {
+        margin-top: 8px;
+
+        font-size: 24px;
+        font-weight: 700;
+
+        color: #171511;
+    }
+
+    /* =========================
+       YEAR TABLE
+    ========================= */
+
+    .table-wrapper {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 750px;
+    }
+
+    th {
+        padding: 15px 12px;
+
+        text-align: left;
+
+        font-size: 10px;
+        letter-spacing: 1.2px;
+
+        color: #625746;
+
+        border-bottom:
+            1px solid rgba(23, 21, 17, 0.14);
+    }
+
+    td {
+        padding: 17px 12px;
+
+        font-size: 13px;
+
+        border-bottom:
+            1px solid rgba(23, 21, 17, 0.08);
+
+        color: #171511;
+    }
+
+    tbody tr {
+        transition: background 0.25s ease;
+    }
+
+    tbody tr:hover {
+        background:
+            rgba(255, 255, 255, 0.45);
+    }
+
+    .year-number {
+        font-weight: 700;
+    }
+
+    .total {
+        font-weight: 700;
+    }
+
+    /* =========================
+       FINAL POSITION
+    ========================= */
+
+    .balance-box {
+        text-align: center;
+
+        padding: 42px 22px;
+
+        border-radius: 20px;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.78),
+                rgba(239, 226, 199, 0.60)
+            );
+
+        border:
+            1px solid rgba(23, 21, 17, 0.13);
+
+        box-shadow:
+            inset 0 0 35px rgba(255, 255, 255, 0.40),
+            0 10px 30px rgba(53, 44, 30, 0.06);
+    }
+
+    .balance-label {
+        color: #756b5c;
+
+        font-size: 11px;
+        letter-spacing: 2px;
+        font-weight: 700;
+    }
+
+    .balance-value {
+        margin-top: 10px;
+
+        font-size: 46px;
+        font-weight: 700;
+
+        color: #171511;
+        letter-spacing: -1px;
+    }
+
+    .balance-description {
+        margin-top: 10px;
+
+        color: #756b5c;
+        font-size: 12px;
+    }
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    .actions {
+        text-align: center;
+        margin-top: 32px;
+
+        animation:
+            fadeUp 0.8s ease both;
+    }
+
+    .button {
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        padding: 15px 27px;
+        margin: 6px;
+
+        border-radius: 13px;
+
+        text-decoration: none;
+
+        font-size: 13px;
+        font-weight: 700;
+
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            background 0.25s ease;
+    }
+
+    .primary {
+        background: #171511;
+        color: #fffaf0;
+
+        border:
+            1px solid #171511;
+
+        box-shadow:
+            0 12px 28px rgba(23, 21, 17, 0.20);
+    }
+
+    .primary:hover {
+        background: #302b24;
+
+        transform: translateY(-4px);
+
+        box-shadow:
+            0 17px 34px rgba(23, 21, 17, 0.24);
+    }
+
+    .secondary {
+        background:
+            rgba(255, 255, 255, 0.62);
+
+        color: #171511;
+
+        border:
+            1px solid rgba(23, 21, 17, 0.15);
+
+        box-shadow:
+            0 8px 20px rgba(53, 44, 30, 0.06);
+    }
+
+    .secondary:hover {
+        background:
+            rgba(23, 21, 17, 0.07);
+
+        transform: translateY(-4px);
+
+        box-shadow:
+            0 14px 28px rgba(53, 44, 30, 0.10);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer {
+        text-align: center;
+
+        margin-top: 32px;
+
+        color: #938879;
+
+        font-size: 10px;
+        letter-spacing: 1.2px;
+    }
+
+    /* =========================
+       ANIMATION
+    ========================= */
+
+    @keyframes fadeUp {
+
+        from {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 700px) {
+
+        body {
+            padding: 30px 15px;
+        }
+
+        h1 {
+            font-size: 31px;
+        }
+
+        .glass-box {
+            padding: 22px;
+        }
+
+        .summary-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .balance-value {
+            font-size: 34px;
+        }
+
+        .button {
+            width: 100%;
+            margin: 6px 0;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="status">
+        ● SIMULATION COMPLETE
+    </div>
+
+    <h1>
+        Financial Projection
+    </h1>
+
+    <p class="subtitle">
+        Your simulated financial outlook across the selected period.
+    </p>
+
+</div>
+
+
+<!-- SUMMARY -->
+
+<div class="glass-box">
+
+    <h2 class="section-title">
+        📊 Projection Summary
+    </h2>
+
+    <div class="summary-grid">
+
+        <div class="summary-card">
+
+            <div class="icon">
+                💼
+            </div>
+
+            <div class="card-label">
+                FINAL YEAR
+            </div>
+
+            <div class="card-value">
+                Year {{ years }}
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="icon">
+                🏦
+            </div>
+
+            <div class="card-label">
+                PROJECTED SAVINGS
+            </div>
+
+            <div class="card-value">
+                ₹{{ "{:,.2f}".format(results[-1].savings) }}
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="icon">
+                💰
+            </div>
+
+            <div class="card-label">
+                TOTAL POSITION
+            </div>
+
+            <div class="card-value">
+                ₹{{ "{:,.2f}".format(results[-1].total) }}
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- YEARLY PROJECTION -->
+
+<div class="glass-box">
+
+    <h2 class="section-title">
+        📈 Year-by-Year Projection
+    </h2>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        YEAR
+                    </th>
+
+                    <th>
+                        ANNUAL INCOME
+                    </th>
+
+                    <th>
+                        ANNUAL EXPENSES
+                    </th>
+
+                    <th>
+                        SAVINGS
+                    </th>
+
+                    <th>
+                        INVESTMENT
+                    </th>
+
+                    <th>
+                        TOTAL POSITION
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for result in results %}
+
+                <tr>
+
+                    <td class="year-number">
+                        Year {{ result.year }}
+                    </td>
+
+                    <td>
+                        ₹{{ "{:,.2f}".format(result.income) }}
+                    </td>
+
+                    <td>
+                        ₹{{ "{:,.2f}".format(result.expenses) }}
+                    </td>
+
+                    <td>
+                        ₹{{ "{:,.2f}".format(result.savings) }}
+                    </td>
+
+                    <td>
+                        ₹{{ "{:,.2f}".format(result.investment) }}
+                    </td>
+
+                    <td class="total">
+                        ₹{{ "{:,.2f}".format(result.total) }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- FINAL POSITION -->
+
+<div class="glass-box">
+
+    <div class="balance-box">
+
+        <div class="balance-label">
+            PROJECTED FINANCIAL POSITION
+        </div>
+
+        <div class="balance-value">
+            ₹{{ "{:,.2f}".format(results[-1].total) }}
+        </div>
+
+        <div class="balance-description">
+            Simulated savings + investment value after
+            {{ years }} year{% if years != 1 %}s{% endif %}.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ACTIONS -->
+
+<div class="actions">
+
+    <a
+        href="/financial-simulator"
+        class="button primary"
+    >
+        🔄 Run Another Simulation
+    </a>
+
+    <a
+        href="/"
+        class="button secondary"
+    >
+        ← Back to LIFECRAFT
+    </a>
+
+</div>
+
+
+<div class="footer">
+
+    LIFECRAFT // FINANCIAL DECISION SIMULATOR
+    // EDUCATIONAL SIMULATION
+
+</div>
+```
+
+</div>
+
+</body>
+
+</html>

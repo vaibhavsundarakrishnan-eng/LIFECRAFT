@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LIFECRAFT - Career Results</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        min-height: 100vh;
+
+        font-family: "Sora", sans-serif;
+
+        background:
+            radial-gradient(
+                circle at 50% -10%,
+                #fffaf0 0%,
+                #f5eedc 45%,
+                #ede3cf 100%
+            );
+
+        color: #171511;
+
+        overflow-x: hidden;
+    }
+
+
+    /* =========================
+       BACKGROUND
+    ========================= */
+
+    body::before {
+        content: "";
+
+        position: fixed;
+        inset: 0;
+
+        background-image:
+            linear-gradient(
+                rgba(23, 21, 17, 0.045) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                90deg,
+                rgba(23, 21, 17, 0.045) 1px,
+                transparent 1px
+            );
+
+        background-size: 50px 50px;
+
+        animation:
+            gridMove 18s linear infinite;
+
+        pointer-events: none;
+
+        z-index: -3;
+    }
+
+
+    @keyframes gridMove {
+
+        from {
+            transform: translateY(0);
+        }
+
+        to {
+            transform: translateY(50px);
+        }
+
+    }
+
+
+    body::after {
+        content: "";
+
+        position: fixed;
+
+        width: 650px;
+        height: 650px;
+
+        border-radius: 50%;
+
+        background:
+            rgba(214, 193, 153, 0.22);
+
+        filter: blur(120px);
+
+        top: -350px;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        pointer-events: none;
+
+        z-index: -2;
+    }
+
+
+    /* =========================
+       MAIN CONTAINER
+    ========================= */
+
+    .container {
+        width: 90%;
+        max-width: 950px;
+
+        margin: auto;
+
+        padding: 50px 0 80px;
+    }
+
+
+    /* =========================
+       TOP BAR
+    ========================= */
+
+    .top-bar {
+        display: flex;
+
+        justify-content: space-between;
+        align-items: center;
+
+        padding-bottom: 22px;
+        margin-bottom: 50px;
+
+        border-bottom:
+            1px solid rgba(23, 21, 17, 0.12);
+    }
+
+
+    .brand {
+        font-size: 20px;
+
+        font-weight: 700;
+
+        letter-spacing: 4px;
+
+        color: #171511;
+    }
+
+
+    .step {
+        font-size: 10px;
+
+        font-weight: 600;
+
+        letter-spacing: 2px;
+
+        color: #6f6250;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header {
+        text-align: center;
+
+        margin-bottom: 45px;
+    }
+
+
+    .status {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        margin-bottom: 18px;
+
+        font-size: 10px;
+
+        font-weight: 600;
+
+        letter-spacing: 2px;
+
+        color: #6f6250;
+    }
+
+
+    .status-dot {
+        width: 8px;
+        height: 8px;
+
+        border-radius: 50%;
+
+        background: #171511;
+
+        box-shadow:
+            0 0 0 4px rgba(23, 21, 17, 0.08);
+
+        animation:
+            pulse 2s ease-in-out infinite;
+    }
+
+
+    @keyframes pulse {
+
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        50% {
+            transform: scale(0.7);
+            opacity: 0.55;
+        }
+
+    }
+
+
+    h1 {
+        font-size: clamp(38px, 6vw, 58px);
+
+        font-weight: 700;
+
+        letter-spacing: -1.5px;
+
+        line-height: 1.1;
+
+        color: #171511;
+
+        margin-bottom: 15px;
+    }
+
+
+    .subtitle {
+        color: #756b5c;
+
+        font-size: 14px;
+
+        line-height: 1.8;
+
+        max-width: 600px;
+
+        margin: auto;
+    }
+
+
+    /* =========================
+       COMMON GLASS BOX
+    ========================= */
+
+    .glass-box,
+    .top3-box,
+    .explanation-box,
+    .info-box {
+
+        background:
+            rgba(255, 252, 244, 0.68);
+
+        border:
+            1px solid rgba(23, 21, 17, 0.12);
+
+        border-radius: 22px;
+
+        box-shadow:
+            0 18px 45px
+            rgba(53, 44, 30, 0.08),
+
+            inset 0 1px 0
+            rgba(255, 255, 255, 0.85);
+
+        backdrop-filter: blur(20px);
+
+        -webkit-backdrop-filter: blur(20px);
+
+        padding: 28px;
+
+        margin-bottom: 28px;
+
+        animation:
+            sectionAppear 0.6s ease both;
+    }
+
+
+    @keyframes sectionAppear {
+
+        from {
+            opacity: 0;
+
+            transform:
+                translateY(16px);
+        }
+
+        to {
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+    }
+
+
+    /* =========================
+       SECTION TITLES
+    ========================= */
+
+    .section-title,
+    .top3-box h2,
+    .explanation-box h2,
+    .info-box h2 {
+
+        color: #171511;
+
+        margin-top: 0;
+
+        margin-bottom: 24px;
+
+        font-size: 20px;
+
+        letter-spacing: -0.4px;
+    }
+
+
+    /* =========================
+       COMPATIBILITY CARD
+    ========================= */
+
+    .career-card {
+
+        background:
+            rgba(255, 255, 255, 0.52);
+
+        padding: 22px;
+
+        margin-bottom: 16px;
+
+        border-radius: 16px;
+
+        border:
+            1px solid rgba(23, 21, 17, 0.10);
+
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease,
+            border-color 0.3s ease;
+    }
+
+
+    .career-card:last-child {
+        margin-bottom: 0;
+    }
+
+
+    .career-card:hover {
+
+        transform:
+            translateY(-4px);
+
+        border-color:
+            rgba(23, 21, 17, 0.20);
+
+        box-shadow:
+            0 14px 30px
+            rgba(53, 44, 30, 0.09);
+    }
+
+
+    .career-header {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 20px;
+    }
+
+
+    .career-name {
+
+        font-size: 17px;
+
+        font-weight: 700;
+
+        color: #171511;
+    }
+
+
+    .percentage {
+
+        font-size: 21px;
+
+        font-weight: 700;
+
+        color: #171511;
+    }
+
+
+    .score {
+
+        color: #756b5c;
+
+        font-size: 12px;
+
+        margin-top: 8px;
+    }
+
+
+    /* =========================
+       MAIN PROGRESS BAR
+    ========================= */
+
+    .progress-background {
+
+        width: 100%;
+
+        height: 9px;
+
+        background:
+            rgba(23, 21, 17, 0.08);
+
+        border-radius: 20px;
+
+        margin-top: 15px;
+
+        overflow: hidden;
+    }
+
+
+    .progress-bar {
+
+        height: 100%;
+
+        background:
+            linear-gradient(
+                90deg,
+                #171511,
+                #756b5c
+            );
+
+        border-radius: 20px;
+
+        transition:
+            width 0.8s ease;
+    }
+
+
+    /* =========================
+       TOP 3
+    ========================= */
+
+    .top3-box h2 {
+        text-align: center;
+    }
+
+
+    .top-career {
+
+        display: flex;
+
+        align-items: center;
+
+        background:
+            rgba(255, 255, 255, 0.52);
+
+        padding: 18px;
+
+        margin-top: 12px;
+
+        border-radius: 15px;
+
+        border:
+            1px solid rgba(23, 21, 17, 0.10);
+
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+    }
+
+
+    .top-career:hover {
+
+        transform:
+            translateX(4px);
+
+        box-shadow:
+            0 10px 25px
+            rgba(53, 44, 30, 0.08);
+    }
+
+
+    .rank {
+
+        font-size: 18px;
+
+        font-weight: 700;
+
+        width: 55px;
+
+        color: #6f6250;
+    }
+
+
+    .top-career-name {
+
+        flex: 1;
+
+        font-size: 16px;
+
+        font-weight: 700;
+
+        color: #171511;
+    }
+
+
+    /* =========================
+       EXPLANATIONS
+    ========================= */
+
+    .explanation-card {
+
+        margin-bottom: 18px;
+
+        padding: 21px;
+
+        border-radius: 16px;
+
+        background:
+            rgba(255, 255, 255, 0.52);
+
+        border:
+            1px solid rgba(23, 21, 17, 0.10);
+    }
+
+
+    .explanation-card:last-child {
+        margin-bottom: 0;
+    }
+
+
+    .explanation-header {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 22px;
+
+        font-size: 17px;
+
+        font-weight: 700;
+
+        color: #171511;
+    }
+
+
+    .factor {
+        margin-bottom: 16px;
+    }
+
+
+    .factor:last-child {
+        margin-bottom: 0;
+    }
+
+
+    .factor > div:first-child {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        gap: 15px;
+
+        margin-bottom: 7px;
+
+        font-size: 12px;
+
+        color: #756b5c;
+    }
+
+
+    .factor span {
+
+        color: #171511;
+
+        font-weight: 700;
+    }
+
+
+    .progress {
+
+        width: 100%;
+
+        height: 7px;
+
+        background:
+            rgba(23, 21, 17, 0.08);
+
+        border-radius: 20px;
+
+        overflow: hidden;
+    }
+
+
+    .progress-fill {
+
+        height: 100%;
+
+        background:
+            linear-gradient(
+                90deg,
+                #171511,
+                #756b5c
+            );
+
+        border-radius: 20px;
+
+        transition:
+            width 0.8s ease;
+    }
+
+
+    /* =========================
+       SCORING INFORMATION
+    ========================= */
+
+    .info-box p {
+
+        color: #756b5c;
+
+        line-height: 1.7;
+
+        font-size: 13px;
+
+        margin-bottom: 15px;
+    }
+
+
+    .weight-row {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        background:
+            rgba(255, 255, 255, 0.52);
+
+        padding: 14px 16px;
+
+        margin-top: 10px;
+
+        border-radius: 11px;
+
+        color: #302c25;
+
+        border:
+            1px solid rgba(23, 21, 17, 0.08);
+    }
+
+
+    .weight-row strong {
+        color: #171511;
+    }
+
+
+    /* =========================
+       EXPLORE BUTTON
+    ========================= */
+
+    .explore-container {
+
+        text-align: center;
+
+        margin-top: 35px;
+    }
+
+
+    .explore-button {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 15px 28px;
+
+        background:
+            #171511;
+
+        color:
+            #f5eedc;
+
+        text-decoration: none;
+
+        border-radius: 13px;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        letter-spacing: 0.3px;
+
+        border:
+            1px solid #171511;
+
+        box-shadow:
+            0 12px 25px
+            rgba(23, 21, 17, 0.18);
+
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease,
+            background 0.3s ease;
+    }
+
+
+    .explore-button:hover {
+
+        background:
+            #2b2721;
+
+        transform:
+            translateY(-3px);
+
+        box-shadow:
+            0 18px 32px
+            rgba(23, 21, 17, 0.24);
+    }
+
+
+    .explore-button:active {
+
+        transform:
+            translateY(1px)
+            scale(0.98);
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer-note {
+
+        text-align: center;
+
+        margin-top: 30px;
+
+        color: #938879;
+
+        font-size: 11px;
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 600px) {
+
+        .container {
+
+            width: 92%;
+
+            padding-top: 28px;
+        }
+
+
+        .top-bar {
+
+            margin-bottom: 40px;
+        }
+
+
+        .brand {
+
+            font-size: 17px;
+
+            letter-spacing: 3px;
+        }
+
+
+        .step {
+
+            font-size: 9px;
+        }
+
+
+        .glass-box,
+        .top3-box,
+        .explanation-box,
+        .info-box {
+
+            padding: 21px;
+
+            border-radius: 18px;
+        }
+
+
+        .career-header {
+
+            align-items: flex-start;
+
+            flex-direction: column;
+
+            gap: 6px;
+        }
+
+
+        .percentage {
+
+            font-size: 20px;
+        }
+
+
+        .top-career {
+
+            padding: 16px;
+        }
+
+
+        .rank {
+
+            width: 45px;
+        }
+
+
+        .explore-button {
+
+            width: 100%;
+        }
+
+    }
+
+
+    /* =========================
+       REDUCED MOTION
+    ========================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+
+            animation-duration:
+                0.01ms !important;
+
+            animation-iteration-count:
+                1 !important;
+
+            transition-duration:
+                0.01ms !important;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<!-- TOP BAR -->
+
+<div class="top-bar">
+
+    <div class="brand">
+        LIFECRAFT
+    </div>
+
+    <div class="step">
+        STEP 01 / ANALYSIS
+    </div>
+
+</div>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="status">
+
+        <span class="status-dot"></span>
+
+        AI CAREER ANALYSIS COMPLETE
+
+    </div>
+
+
+    <h1>
+        🎯 Your Career Results
+    </h1>
+
+
+    <p class="subtitle">
+
+        LIFECRAFT has analyzed your interests,
+        academic subjects and work preferences.
+
+    </p>
+
+</div>
+
+
+<!-- ALL CAREER COMPATIBILITY -->
+
+<div class="glass-box">
+
+    <h2 class="section-title">
+        📊 Compatibility Percentages
+    </h2>
+
+
+    {% for career, percentage in career_percentages.items() %}
+
+    <div class="career-card">
+
+        <div class="career-header">
+
+            <div class="career-name">
+                {{ career }}
+            </div>
+
+
+            <div class="percentage">
+                {{ percentage }}%
+            </div>
+
+        </div>
+
+
+        <div class="score">
+
+            Compatibility Score:
+            {{ career_scores[career] }}
+
+        </div>
+
+
+        <div class="progress-background">
+
+            <div
+                class="progress-bar"
+                style="width: {{ percentage }}%;">
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+<!-- TOP 3 CAREERS -->
+
+<div class="top3-box">
+
+    <h2>
+        🏆 Your Top 3 Career Paths
+    </h2>
+
+
+    {% for career, percentage in top3 %}
+
+    <div class="top-career">
+
+        <div class="rank">
+            #{{ loop.index }}
+        </div>
+
+
+        <div class="top-career-name">
+            {{ career }}
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+<!-- WHY THESE CAREERS MATCHED -->
+
+<div class="explanation-box">
+
+    <h2>
+        🧠 Why These Careers Matched You
+    </h2>
+
+
+    {% for career, percentage in top3 %}
+
+    <div class="explanation-card">
+
+        <div class="explanation-header">
+
+            <span>
+                {{ career }}
+            </span>
+
+        </div>
+
+
+        <!-- SUBJECTS -->
+
+        <div class="factor">
+
+            <div>
+
+                📚 Academic Subjects
+
+                <span>
+                    {{ career_explanations[career]["subject"] }}%
+                </span>
+
+            </div>
+
+
+            <div class="progress">
+
+                <div
+                    class="progress-fill"
+                    style="width: {{ career_explanations[career]['subject'] }}%;">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- INTERESTS -->
+
+        <div class="factor">
+
+            <div>
+
+                💡 Personal Interests
+
+                <span>
+                    {{ career_explanations[career]["interest"] }}%
+                </span>
+
+            </div>
+
+
+            <div class="progress">
+
+                <div
+                    class="progress-fill"
+                    style="width: {{ career_explanations[career]['interest'] }}%;">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PREFERENCE -->
+
+        <div class="factor">
+
+            <div>
+
+                ⚙️ Work Preference
+
+                <span>
+                    {{ career_explanations[career]["preference"] }}%
+                </span>
+
+            </div>
+
+
+            <div class="progress">
+
+                <div
+                    class="progress-fill"
+                    style="width: {{ career_explanations[career]['preference'] }}%;">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+<!-- SCORING INFORMATION -->
+
+<div class="info-box">
+
+    <h2>
+        🧠 How is the compatibility calculated?
+    </h2>
+
+
+    <p>
+
+        LIFECRAFT uses a weighted decision model
+        to calculate compatibility for each career path.
+
+    </p>
+
+
+    <div class="weight-row">
+
+        <span>
+            📚 Academic Subjects
+        </span>
+
+        <strong>
+            50%
+        </strong>
+
+    </div>
+
+
+    <div class="weight-row">
+
+        <span>
+            💡 Personal Interests
+        </span>
+
+        <strong>
+            30%
+        </strong>
+
+    </div>
+
+
+    <div class="weight-row">
+
+        <span>
+            ⚙️ Work Preference
+        </span>
+
+        <strong>
+            20%
+        </strong>
+
+    </div>
+
+
+    <p style="margin-top: 20px;">
+
+        The three components are combined to produce
+        the final compatibility percentage for each
+        career path.
+
+    </p>
+
+
+    <p>
+
+        <strong>Note:</strong>
+
+        The percentage represents compatibility within
+        this educational simulation. It is not a prediction
+        of career success or a professional aptitude assessment.
+
+    </p>
+
+</div>
+
+
+<!-- EXPLORE CAREERS BUTTON -->
+
+<div class="explore-container">
+
+    <a
+        href="/careers"
+        class="explore-button"
+    >
+        🚀 Explore Careers
+    </a>
+
+</div>
+
+
+<div class="footer-note">
+
+    LIFECRAFT • Career exploration & decision simulation
+
+</div>
+```
+
+</div>
+
+</body>
+
+</html>
