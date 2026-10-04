@@ -1,547 +1,892 @@
+# ============================================================
+# LIFECRAFT - CAREER ROADMAP DATA
+# ============================================================
+
 roadmap_data = {
 
+    # ========================================================
+    # 1. COMPUTER SCIENCE ENGINEERING
+    # ========================================================
+
     "Computer Science Engineering": {
-        "description": "A technology-focused engineering field involving programming, software development, algorithms, data structures and computer systems.",
+        "course": "B.Tech / B.E. in Computer Science and Engineering",
+
+        "description": (
+            "Computer Science Engineering focuses on programming, software "
+            "development, algorithms, databases, artificial intelligence, "
+            "cybersecurity and modern computing technologies."
+        ),
+
         "colleges": [
             {
                 "name": "IIT Madras",
-                "location": "Tamil Nadu",
+                "location": "Chennai, Tamil Nadu",
                 "website": "https://www.iitm.ac.in/"
             },
             {
                 "name": "NIT Trichy",
-                "location": "Tamil Nadu",
+                "location": "Tiruchirappalli, Tamil Nadu",
+                "website": "https://www.nitt.edu/"
+            },
+            {
+                "name": "Shiv Nadar University Chennai",
+                "location": "Chennai, Tamil Nadu",
+                "website": "https://www.snuchennai.edu.in/"
+            },
+            {
+                "name": "BITS Pilani",
+                "location": "Pilani, Rajasthan",
+                "website": "https://www.bits-pilani.ac.in/"
+            },
+            {
+                "name": "IIIT Hyderabad",
+                "location": "Hyderabad, Telangana",
+                "website": "https://www.iiit.ac.in/"
+            },
+            {
+                "name": "Manipal Institute of Technology",
+                "location": "Manipal, Karnataka",
+                "website": "https://manipal.edu/mit.html"
+            }
+        ],
+
+        "skills": [
+            "Programming",
+            "Data Structures and Algorithms",
+            "Database Management",
+            "Problem Solving",
+            "Artificial Intelligence"
+        ],
+
+        "career_path": [
+            "Software Developer",
+            "Software Engineer",
+            "Data Engineer",
+            "AI Engineer",
+            "Cloud Engineer"
+        ]
+    },
+
+
+    # ========================================================
+    # 2. ARTIFICIAL INTELLIGENCE & DATA SCIENCE
+    # ========================================================
+
+    "Artificial Intelligence & Data Science": {
+        "course": "B.Tech in Artificial Intelligence and Data Science",
+
+        "description": (
+            "Artificial Intelligence and Data Science combines programming, "
+            "statistics, machine learning and data analysis to build intelligent "
+            "systems and extract useful insights from data."
+        ),
+
+        "colleges": [
+            {
+                "name": "IIT Madras",
+                "location": "Chennai, Tamil Nadu",
+                "website": "https://www.iitm.ac.in/"
+            },
+            {
+                "name": "VIT Vellore",
+                "location": "Vellore, Tamil Nadu",
+                "website": "https://vit.ac.in/"
+            },
+            {
+                "name": "PSG College of Technology",
+                "location": "Coimbatore, Tamil Nadu",
+                "website": "https://www.psgtech.edu/"
+            },
+            {
+                "name": "IIIT Hyderabad",
+                "location": "Hyderabad, Telangana",
+                "website": "https://www.iiit.ac.in/"
+            },
+            {
+                "name": "IIT Hyderabad",
+                "location": "Hyderabad, Telangana",
+                "website": "https://www.iith.ac.in/"
+            },
+            {
+                "name": "BITS Pilani",
+                "location": "Pilani, Rajasthan",
+                "website": "https://www.bits-pilani.ac.in/"
+            }
+        ],
+
+        "skills": [
+            "Python",
+            "Statistics",
+            "Machine Learning",
+            "Data Analysis",
+            "Deep Learning"
+        ],
+
+        "career_path": [
+            "Data Scientist",
+            "Machine Learning Engineer",
+            "AI Engineer",
+            "Data Analyst",
+            "Research Scientist"
+        ]
+    },
+
+
+    # ========================================================
+    # 3. ELECTRONICS & COMMUNICATION ENGINEERING
+    # ========================================================
+
+    "Electronics & Communication Engineering": {
+        "course": "B.Tech / B.E. in Electronics and Communication Engineering",
+
+        "description": (
+            "Electronics and Communication Engineering deals with electronic "
+            "circuits, communication systems, embedded systems, signal processing "
+            "and modern semiconductor technologies."
+        ),
+
+        "colleges": [
+            {
+                "name": "IIT Madras",
+                "location": "Chennai, Tamil Nadu",
+                "website": "https://www.iitm.ac.in/"
+            },
+            {
+                "name": "NIT Trichy",
+                "location": "Tiruchirappalli, Tamil Nadu",
                 "website": "https://www.nitt.edu/"
             },
             {
                 "name": "VIT Vellore",
-                "location": "Tamil Nadu",
+                "location": "Vellore, Tamil Nadu",
                 "website": "https://vit.ac.in/"
             },
             {
                 "name": "BITS Pilani",
-                "location": "Rajasthan",
+                "location": "Pilani, Rajasthan",
                 "website": "https://www.bits-pilani.ac.in/"
             },
             {
-                "name": "IIIT Hyderabad",
-                "location": "Telangana",
-                "website": "https://www.iiit.ac.in/"
+                "name": "Manipal Institute of Technology",
+                "location": "Manipal, Karnataka",
+                "website": "https://manipal.edu/mit.html"
+            },
+            {
+                "name": "IIT Bombay",
+                "location": "Mumbai, Maharashtra",
+                "website": "https://www.iitb.ac.in/"
             }
         ],
-        "skills": [
-            "Python",
-            "Java",
-            "C++",
-            "Data Structures",
-            "Algorithms"
-        ]
-    },
 
-
-    "Artificial Intelligence & Data Science": {
-        "description": "A technology field focused on artificial intelligence, machine learning, statistics, data analysis and building intelligent systems.",
-        "colleges": [
-            {
-                "name": "PSG College of Technology",
-                "location": "Tamil Nadu",
-                "website": "https://www.psgtech.edu/"
-            },
-            {
-                "name": "SRM Institute of Science and Technology",
-                "location": "Tamil Nadu",
-                "website": "https://www.srmist.edu.in/"
-            },
-            {
-                "name": "VIT Vellore",
-                "location": "Tamil Nadu",
-                "website": "https://vit.ac.in/"
-            },
-            {
-                "name": "IIIT Hyderabad",
-                "location": "Telangana",
-                "website": "https://www.iiit.ac.in/"
-            },
-            {
-                "name": "BITS Pilani",
-                "location": "Rajasthan",
-                "website": "https://www.bits-pilani.ac.in/"
-            }
-        ],
-        "skills": [
-            "Python",
-            "Machine Learning",
-            "Statistics",
-            "SQL",
-            "Data Visualization"
-        ]
-    },
-
-
-    "Electronics & Communication Engineering": {
-        "description": "An engineering field involving electronic circuits, communication systems, embedded technologies and hardware design.",
-        "colleges": [
-            {
-                "name": "Anna University",
-                "location": "Tamil Nadu",
-                "website": "https://www.annauniv.edu/"
-            },
-            {
-                "name": "SSN College of Engineering",
-                "location": "Tamil Nadu",
-                "website": "https://www.ssn.edu.in/"
-            },
-            {
-                "name": "VIT Vellore",
-                "location": "Tamil Nadu",
-                "website": "https://vit.ac.in/"
-            },
-            {
-                "name": "BITS Pilani",
-                "location": "Rajasthan",
-                "website": "https://www.bits-pilani.ac.in/"
-            },
-            {
-                "name": "NITK Surathkal",
-                "location": "Karnataka",
-                "website": "https://www.nitk.ac.in/"
-            }
-        ],
         "skills": [
             "Circuit Design",
             "Embedded Systems",
-            "VLSI Basics",
-            "MATLAB",
-            "PCB Design"
+            "Digital Electronics",
+            "Signal Processing",
+            "Communication Systems"
+        ],
+
+        "career_path": [
+            "Electronics Engineer",
+            "Embedded Systems Engineer",
+            "VLSI Engineer",
+            "Communication Engineer",
+            "Hardware Engineer"
         ]
     },
 
 
+    # ========================================================
+    # 4. MECHANICAL ENGINEERING
+    # ========================================================
+
     "Mechanical Engineering": {
-        "description": "An engineering field focused on machines, mechanical systems, manufacturing, thermal systems and engineering design.",
+        "course": "B.Tech / B.E. in Mechanical Engineering",
+
+        "description": (
+            "Mechanical Engineering focuses on machines, manufacturing, "
+            "mechanics, thermodynamics, automation, robotics and product design."
+        ),
+
         "colleges": [
             {
                 "name": "IIT Madras",
-                "location": "Tamil Nadu",
+                "location": "Chennai, Tamil Nadu",
                 "website": "https://www.iitm.ac.in/"
             },
             {
-                "name": "PSG College of Technology",
-                "location": "Tamil Nadu",
-                "website": "https://www.psgtech.edu/"
-            },
-            {
-                "name": "Anna University",
-                "location": "Tamil Nadu",
-                "website": "https://www.annauniv.edu/"
-            },
-            {
-                "name": "BITS Pilani",
-                "location": "Rajasthan",
-                "website": "https://www.bits-pilani.ac.in/"
-            },
-            {
-                "name": "COEP Technological University",
-                "location": "Maharashtra",
-                "website": "https://www.coeptech.ac.in/"
-            }
-        ],
-        "skills": [
-            "CAD (AutoCAD/SolidWorks)",
-            "Manufacturing",
-            "Thermodynamics",
-            "CNC Basics",
-            "Analytical Skills"
-        ]
-    },
-
-
-    "Civil Engineering": {
-        "description": "An engineering field involving the planning, design and construction of buildings, infrastructure and other physical structures.",
-        "colleges": [
-            {
-                "name": "Anna University",
-                "location": "Tamil Nadu",
-                "website": "https://www.annauniv.edu/"
-            },
-            {
                 "name": "NIT Trichy",
-                "location": "Tamil Nadu",
+                "location": "Tiruchirappalli, Tamil Nadu",
                 "website": "https://www.nitt.edu/"
             },
             {
-                "name": "VIT Vellore",
-                "location": "Tamil Nadu",
-                "website": "https://vit.ac.in/"
+                "name": "PSG College of Technology",
+                "location": "Coimbatore, Tamil Nadu",
+                "website": "https://www.psgtech.edu/"
             },
             {
-                "name": "COEP Technological University",
-                "location": "Maharashtra",
-                "website": "https://www.coeptech.ac.in/"
+                "name": "IIT Bombay",
+                "location": "Mumbai, Maharashtra",
+                "website": "https://www.iitb.ac.in/"
             },
             {
                 "name": "BITS Pilani",
-                "location": "Rajasthan",
+                "location": "Pilani, Rajasthan",
                 "website": "https://www.bits-pilani.ac.in/"
+            },
+            {
+                "name": "Manipal Institute of Technology",
+                "location": "Manipal, Karnataka",
+                "website": "https://manipal.edu/mit.html"
             }
         ],
+
         "skills": [
-            "AutoCAD",
-            "Structural Analysis",
-            "Surveying",
-            "Project Management",
-            "Estimation"
+            "CAD",
+            "Thermodynamics",
+            "Manufacturing",
+            "Mechanical Design",
+            "Robotics"
+        ],
+
+        "career_path": [
+            "Mechanical Engineer",
+            "Design Engineer",
+            "Manufacturing Engineer",
+            "Automotive Engineer",
+            "Robotics Engineer"
         ]
     },
 
 
-    "Biotechnology": {
-        "description": "A science and technology field that applies biological processes and laboratory techniques to areas such as healthcare, research and biotechnology development.",
+    # ========================================================
+    # 5. CIVIL ENGINEERING
+    # ========================================================
+
+    "Civil Engineering": {
+        "course": "B.Tech / B.E. in Civil Engineering",
+
+        "description": (
+            "Civil Engineering involves the planning, design, construction "
+            "and maintenance of buildings, transportation systems, structures "
+            "and infrastructure."
+        ),
+
         "colleges": [
             {
+                "name": "IIT Madras",
+                "location": "Chennai, Tamil Nadu",
+                "website": "https://www.iitm.ac.in/"
+            },
+            {
+                "name": "NIT Trichy",
+                "location": "Tiruchirappalli, Tamil Nadu",
+                "website": "https://www.nitt.edu/"
+            },
+            {
+                "name": "Anna University",
+                "location": "Chennai, Tamil Nadu",
+                "website": "https://www.annauniv.edu/"
+            },
+            {
+                "name": "IIT Roorkee",
+                "location": "Roorkee, Uttarakhand",
+                "website": "https://www.iitr.ac.in/"
+            },
+            {
+                "name": "BITS Pilani",
+                "location": "Pilani, Rajasthan",
+                "website": "https://www.bits-pilani.ac.in/"
+            },
+            {
+                "name": "NIT Calicut",
+                "location": "Kozhikode, Kerala",
+                "website": "https://nitc.ac.in/"
+            }
+        ],
+
+        "skills": [
+            "Structural Analysis",
+            "AutoCAD",
+            "Construction Management",
+            "Surveying",
+            "Project Management"
+        ],
+
+        "career_path": [
+            "Civil Engineer",
+            "Structural Engineer",
+            "Construction Engineer",
+            "Project Engineer",
+            "Infrastructure Engineer"
+        ]
+    },
+
+
+    # ========================================================
+    # 6. BIOTECHNOLOGY
+    # ========================================================
+
+    "Biotechnology": {
+        "course": "B.Tech / B.E. in Biotechnology",
+
+        "description": (
+            "Biotechnology combines biology, chemistry, engineering and "
+            "technology to develop applications in healthcare, agriculture, "
+            "food technology, pharmaceuticals and research."
+        ),
+
+        "colleges": [
+            {
+                "name": "IIT Madras",
+                "location": "Chennai, Tamil Nadu",
+                "website": "https://www.iitm.ac.in/"
+            },
+            {
                 "name": "VIT Vellore",
-                "location": "Tamil Nadu",
+                "location": "Vellore, Tamil Nadu",
                 "website": "https://vit.ac.in/"
             },
             {
                 "name": "Anna University",
-                "location": "Tamil Nadu",
+                "location": "Chennai, Tamil Nadu",
                 "website": "https://www.annauniv.edu/"
             },
             {
-                "name": "SRM Institute of Science and Technology",
-                "location": "Tamil Nadu",
-                "website": "https://www.srmist.edu.in/"
+                "name": "IIT Hyderabad",
+                "location": "Hyderabad, Telangana",
+                "website": "https://www.iith.ac.in/"
             },
             {
                 "name": "IIT Kharagpur",
-                "location": "West Bengal",
+                "location": "Kharagpur, West Bengal",
                 "website": "https://www.iitkgp.ac.in/"
             },
             {
-                "name": "BITS Pilani",
-                "location": "Rajasthan",
-                "website": "https://www.bits-pilani.ac.in/"
+                "name": "Manipal Academy of Higher Education",
+                "location": "Manipal, Karnataka",
+                "website": "https://manipal.edu/"
             }
         ],
+
         "skills": [
-            "Molecular Biology",
+            "Biological Sciences",
             "Laboratory Techniques",
-            "Data Analysis",
-            "Research Skills",
-            "Documentation"
+            "Biochemistry",
+            "Research",
+            "Data Analysis"
+        ],
+
+        "career_path": [
+            "Biotechnologist",
+            "Research Scientist",
+            "Biomedical Scientist",
+            "Clinical Researcher",
+            "Bioprocess Engineer"
         ]
     },
 
 
+    # ========================================================
+    # 7. MBBS
+    # ========================================================
+
     "MBBS (Doctor)": {
-        "description": "A medical education and professional pathway focused on understanding human health, diagnosing conditions and providing patient care.",
+        "course": "MBBS",
+
+        "description": (
+            "Medicine focuses on understanding human health, diagnosing "
+            "diseases, treating patients and preventing illness."
+        ),
+
         "colleges": [
             {
-                "name": "Christian Medical College",
-                "location": "Tamil Nadu",
+                "name": "Christian Medical College, Vellore",
+                "location": "Vellore, Tamil Nadu",
                 "website": "https://www.cmch-vellore.edu/"
             },
             {
                 "name": "Madras Medical College",
                 "location": "Chennai, Tamil Nadu",
                 "website": "https://mmc.xenovex.com/en/"
-            },      
+            },
             {
-                "name": "Stanley Medical College",
-                "location": "Tamil Nadu",
-                "website": "https://stanleymedicalcollege.ac.in/"
+                "name": "Sri Ramachandra Institute of Higher Education and Research",
+                "location": "Chennai, Tamil Nadu",
+                "website": "https://www.sriramachandra.edu.in/"
             },
             {
                 "name": "AIIMS New Delhi",
-                "location": "Delhi",
+                "location": "New Delhi",
                 "website": "https://www.aiims.edu/"
+            },
+            {
+                "name": "PGIMER Chandigarh",
+                "location": "Chandigarh",
+                "website": "https://pgimer.edu.in/"
             },
             {
                 "name": "JIPMER",
                 "location": "Puducherry",
-                "website": "https://www.jipmer.edu.in/"
+                "website": "https://www.jipmer.ac.in/"
             }
         ],
+
         "skills": [
-            "Biology",
+            "Clinical Knowledge",
+            "Communication",
             "Patient Care",
-            "Clinical Reasoning",
-            "Diagnosis",
-            "Communication"
+            "Critical Thinking",
+            "Decision Making"
+        ],
+
+        "career_path": [
+            "Doctor",
+            "Medical Officer",
+            "Specialist Doctor",
+            "Medical Researcher",
+            "Healthcare Administrator"
         ]
     },
 
 
+    # ========================================================
+    # 8. BDS
+    # ========================================================
+
     "BDS (Dentist)": {
-        "description": "A healthcare pathway focused on oral health, dental procedures, patient care and the diagnosis and management of dental conditions.",
+        "course": "Bachelor of Dental Surgery",
+
+        "description": (
+            "Dentistry focuses on oral healthcare, diagnosis and treatment "
+            "of dental conditions and preventive dental care."
+        ),
+
         "colleges": [
             {
                 "name": "Saveetha Institute of Medical and Technical Sciences",
-                "location": "Tamil Nadu",
+                "location": "Chennai, Tamil Nadu",
                 "website": "https://www.saveetha.com/"
             },
             {
-                "name": "SRM Institute of Science and Technology",
-                "location": "Tamil Nadu",
-                "website": "https://www.srmist.edu.in/"
+                "name": "Sri Ramachandra Institute of Higher Education and Research",
+                "location": "Chennai, Tamil Nadu",
+                "website": "https://www.sriramachandra.edu.in/"
             },
             {
                 "name": "Meenakshi Ammal Dental College",
-                "location": "Tamil Nadu",
+                "location": "Chennai, Tamil Nadu",
                 "website": "https://madch.edu.in/"
             },
             {
-                "name": "Manipal College of Dental Sciences",
-                "location": "Karnataka",
-                "website": "https://www.manipal.edu/"
+                "name": "Maulana Azad Institute of Dental Sciences",
+                "location": "New Delhi",
+                "website": "https://maids.delhi.gov.in/"
             },
             {
-                "name": "Maulana Azad Institute of Dental Sciences",
-                "location": "Delhi",
-                "website": "https://www.madch.edu/"
+                "name": "Manipal College of Dental Sciences",
+                "location": "Manipal, Karnataka",
+                "website": "https://manipal.edu/mcods-manipal.html"
+            },
+            {
+                "name": "Dr. D. Y. Patil Vidyapeeth",
+                "location": "Pune, Maharashtra",
+                "website": "https://www.dpu.edu.in/"
             }
         ],
+
         "skills": [
-            "Manual Dexterity",
-            "Patient Communication",
-            "Dental Procedures",
+            "Dental Anatomy",
+            "Clinical Skills",
+            "Patient Care",
             "Precision",
-            "Hygiene Standards"
+            "Communication"
+        ],
+
+        "career_path": [
+            "Dentist",
+            "Dental Surgeon",
+            "Orthodontist",
+            "Prosthodontist",
+            "Dental Researcher"
         ]
     },
 
 
+    # ========================================================
+    # 9. PHARMACY
+    # ========================================================
+
     "Pharmacy": {
-        "description": "A healthcare-related field involving medicines, pharmacology, drug knowledge, pharmaceutical science and patient counselling.",
+        "course": "B.Pharm / Bachelor of Pharmacy",
+
+        "description": (
+            "Pharmacy focuses on medicines, drug development, formulation, "
+            "pharmacology, quality control and safe use of pharmaceutical products."
+        ),
+
         "colleges": [
             {
-                "name": "JSS Academy of Higher Education & Research",
-                "location": "Tamil Nadu",
-                "website": "https://www.jssuni.edu.in/"
+                "name": "JSS College of Pharmacy, Ooty",
+                "location": "Ooty, Tamil Nadu",
+                "website": "https://jsscpooty.org/"
+            },
+            {
+                "name": "PSG College of Pharmacy",
+                "location": "Coimbatore, Tamil Nadu",
+                "website": "https://psgpharma.ac.in/"
             },
             {
                 "name": "SRM Institute of Science and Technology",
-                "location": "Tamil Nadu",
+                "location": "Chennai, Tamil Nadu",
                 "website": "https://www.srmist.edu.in/"
-            },
-            {
-                "name": "Annamalai University",
-                "location": "Tamil Nadu",
-                "website": "https://annamalaiuniversity.ac.in/"
-            },
-            {
-                "name": "Manipal College of Pharmaceutical Sciences",
-                "location": "Karnataka",
-                "website": "https://www.manipal.edu/"
             },
             {
                 "name": "Jamia Hamdard",
-                "location": "Delhi",
-                "website": "https://www.jamiahamdard.edu/"
+                "location": "New Delhi",
+                "website": "https://www.jamiahamdard.ac.in/"
+            },
+            {
+                "name": "BITS Pilani",
+                "location": "Pilani, Rajasthan",
+                "website": "https://www.bits-pilani.ac.in/"
+            },
+            {
+                "name": "NIPER Hyderabad",
+                "location": "Hyderabad, Telangana",
+                "website": "https://www.niperhyd.ac.in/"
             }
         ],
+
         "skills": [
             "Pharmacology",
-            "Chemistry",
-            "Drug Knowledge",
-            "Attention to Detail",
-            "Patient Counselling"
+            "Drug Formulation",
+            "Pharmaceutical Chemistry",
+            "Laboratory Skills",
+            "Research"
+        ],
+
+        "career_path": [
+            "Pharmacist",
+            "Clinical Researcher",
+            "Drug Safety Associate",
+            "Pharmaceutical Scientist",
+            "Quality Control Analyst"
         ]
     },
 
 
+    # ========================================================
+    # 10. B.COM
+    # ========================================================
+
     "B.Com": {
-        "description": "An undergraduate commerce pathway covering areas such as accounting, taxation, finance, business operations and financial analysis.",
+        "course": "Bachelor of Commerce",
+
+        "description": (
+            "Commerce focuses on accounting, finance, taxation, business "
+            "management, economics and related areas of the business world."
+        ),
+
         "colleges": [
             {
                 "name": "Loyola College",
-                "location": "Tamil Nadu",
+                "location": "Chennai, Tamil Nadu",
                 "website": "https://www.loyolacollege.edu/"
             },
             {
                 "name": "Madras Christian College",
-                "location": "Tamil Nadu",
-                "website": "https://www.mcc.edu.in/"
+                "location": "Chennai, Tamil Nadu",
+                "website": "https://mcc.edu.in/"
             },
             {
-                "name": "Presidency College",
-                "location": "Tamil Nadu",
-                "website": "https://www.pcc.edu.in/"
+                "name": "Stella Maris College",
+                "location": "Chennai, Tamil Nadu",
+                "website": "https://stellamariscollege.edu.in/"
             },
             {
                 "name": "Shri Ram College of Commerce",
-                "location": "Delhi",
-                "website": "https://www.srcc.du.ac.in/"
+                "location": "New Delhi",
+                "website": "https://www.srcc.edu/"
+            },
+            {
+                "name": "Hindu College",
+                "location": "New Delhi",
+                "website": "https://hinducollege.ac.in/"
             },
             {
                 "name": "Christ University",
-                "location": "Karnataka",
+                "location": "Bengaluru, Karnataka",
                 "website": "https://christuniversity.in/"
             }
         ],
+
         "skills": [
             "Accounting",
+            "Financial Analysis",
+            "Business Communication",
             "Taxation",
-            "Tally",
-            "MS Excel",
-            "Financial Analysis"
+            "Business Management"
+        ],
+
+        "career_path": [
+            "Accountant",
+            "Financial Analyst",
+            "Tax Consultant",
+            "Auditor",
+            "Investment Analyst"
         ]
     },
 
 
+    # ========================================================
+    # 11. BBA
+    # ========================================================
+
     "BBA": {
-        "description": "A business and management pathway focused on leadership, marketing, finance, communication and managing teams and organizations.",
+        "course": "Bachelor of Business Administration",
+
+        "description": (
+            "BBA develops knowledge in business management, marketing, "
+            "finance, entrepreneurship, operations and organisational leadership."
+        ),
+
         "colleges": [
             {
                 "name": "Loyola College",
-                "location": "Tamil Nadu",
+                "location": "Chennai, Tamil Nadu",
                 "website": "https://www.loyolacollege.edu/"
             },
             {
                 "name": "Madras Christian College",
-                "location": "Tamil Nadu",
-                "website": "https://www.mcc.edu.in/"
+                "location": "Chennai, Tamil Nadu",
+                "website": "https://mcc.edu.in/"
             },
             {
-                "name": "SSN College of Engineering",
-                "location": "Tamil Nadu",
-                "website": "https://www.ssn.edu.in/"
+                "name": "VIT Vellore",
+                "location": "Vellore, Tamil Nadu",
+                "website": "https://vit.ac.in/"
             },
             {
                 "name": "Christ University",
-                "location": "Karnataka",
+                "location": "Bengaluru, Karnataka",
                 "website": "https://christuniversity.in/"
             },
             {
-                "name": "Shaheed Sukhdev College of Business Studies",
-                "location": "Delhi",
-                "website": "https://sscbs.du.ac.in/"
+                "name": "SVKM's NMIMS",
+                "location": "Mumbai, Maharashtra",
+                "website": "https://www.nmims.edu/"
+            },
+            {
+                "name": "Symbiosis International University",
+                "location": "Pune, Maharashtra",
+                "website": "https://www.siu.edu.in/"
             }
         ],
+
         "skills": [
             "Leadership",
             "Marketing",
-            "Finance Basics",
-            "Public Speaking",
-            "Team Management"
+            "Business Communication",
+            "Financial Management",
+            "Entrepreneurship"
+        ],
+
+        "career_path": [
+            "Business Analyst",
+            "Marketing Manager",
+            "Business Development Manager",
+            "Entrepreneur",
+            "Management Consultant"
         ]
     },
 
 
+    # ========================================================
+    # 12. BCA
+    # ========================================================
+
     "BCA": {
-        "description": "A computer applications pathway focused on programming, web development, databases, networking and software-related skills.",
+        "course": "Bachelor of Computer Applications",
+
+        "description": (
+            "BCA focuses on computer applications, programming, databases, "
+            "web development, software development and information technology."
+        ),
+
         "colleges": [
             {
                 "name": "Loyola College",
-                "location": "Tamil Nadu",
+                "location": "Chennai, Tamil Nadu",
                 "website": "https://www.loyolacollege.edu/"
             },
             {
                 "name": "Madras Christian College",
-                "location": "Tamil Nadu",
-                "website": "https://www.mcc.edu.in/"
+                "location": "Chennai, Tamil Nadu",
+                "website": "https://mcc.edu.in/"
             },
             {
-                "name": "Kristu Jayanti",
-                "location": "Karnataka",
-                "website": "https://kristujayanti.edu.in/"
+                "name": "VIT Vellore",
+                "location": "Vellore, Tamil Nadu",
+                "website": "https://vit.ac.in/"
             },
             {
                 "name": "Christ University",
-                "location": "Karnataka",
+                "location": "Bengaluru, Karnataka",
                 "website": "https://christuniversity.in/"
             },
             {
-                "name": "Amity University",
-                "location": "Uttar Pradesh",
-                "website": "https://www.amity.edu/"
+                "name": "Symbiosis Institute of Computer Studies and Research",
+                "location": "Pune, Maharashtra",
+                "website": "https://www.sicsr.ac.in/"
+            },
+            {
+                "name": "Kristu Jayanti",
+                "location": "Bengaluru, Karnataka",
+                "website": "https://kristujayanti.edu.in/"
             }
         ],
+
         "skills": [
-            "Python",
-            "Java",
+            "Programming",
             "Web Development",
-            "SQL",
-            "Networking Basics"
+            "Database Management",
+            "Software Development",
+            "Problem Solving"
+        ],
+
+        "career_path": [
+            "Software Developer",
+            "Web Developer",
+            "Application Developer",
+            "Database Administrator",
+            "IT Support Specialist"
         ]
     },
 
 
+    # ========================================================
+    # 13. LAW
+    # ========================================================
+
     "Law (BA LLB)": {
-        "description": "A legal education pathway involving legal research, communication, negotiation, drafting and understanding legal systems and principles.",
+        "course": "BA LLB / Integrated Law",
+
+        "description": (
+            "Law combines legal education with subjects such as political "
+            "science, economics, sociology and social sciences."
+        ),
+
         "colleges": [
             {
-                "name": "Tamil Nadu Dr. Ambedkar Law University",
-                "location": "Tamil Nadu",
-                "website": "https://tndalu.ac.in/"
+                "name": "Tamil Nadu National Law University",
+                "location": "Tiruchirappalli, Tamil Nadu",
+                "website": "https://tnnlu.ac.in/"
             },
             {
                 "name": "School of Excellence in Law",
-                "location": "Tamil Nadu",
-                "website": "https://tndalu.ac.in/"
+                "location": "Chennai, Tamil Nadu",
+                "website": "https://www.tndalu.ac.in/"
             },
             {
-                "name": "Dr. Ambedkar Government Law College",
-                "location": "Tamil Nadu",
-                "website": "https://aglcpondy.ac.in/"
+                "name": "SASTRA Deemed University",
+                "location": "Thanjavur, Tamil Nadu",
+                "website": "https://www.sastra.edu/"
             },
             {
-                "name": "National Law School of India University",
-                "location": "Karnataka",
+                "name": "NLSIU Bengaluru",
+                "location": "Bengaluru, Karnataka",
                 "website": "https://www.nls.ac.in/"
             },
             {
-                "name": "National Law University Delhi",
-                "location": "Delhi",
+                "name": "NLU Delhi",
+                "location": "New Delhi",
                 "website": "https://nludelhi.ac.in/"
+            },
+            {
+                "name": "NALSAR University of Law",
+                "location": "Hyderabad, Telangana",
+                "website": "https://nalsar.ac.in/"
             }
         ],
+
         "skills": [
             "Legal Research",
-            "Public Speaking",
-            "Negotiation",
             "Critical Thinking",
-            "Drafting"
+            "Communication",
+            "Argumentation",
+            "Analytical Reasoning"
+        ],
+
+        "career_path": [
+            "Lawyer",
+            "Legal Advisor",
+            "Corporate Lawyer",
+            "Legal Consultant",
+            "Judicial Services"
         ]
     },
 
 
+    # ========================================================
+    # 14. ARCHITECTURE
+    # ========================================================
+
     "Architecture": {
-        "description": "A design and built-environment field involving architectural design, spatial planning, visualization and the development of buildings and spaces.",
+        "course": "B.Arch / Bachelor of Architecture",
+
+        "description": (
+            "Architecture combines design, engineering, creativity and "
+            "construction principles to create functional and sustainable spaces."
+        ),
+
         "colleges": [
             {
                 "name": "Anna University",
-                "location": "Tamil Nadu",
+                "location": "Chennai, Tamil Nadu",
                 "website": "https://www.annauniv.edu/"
             },
             {
-                "name": "Thiagarajar College of Engineering",
-                "location": "Tamil Nadu",
-                "website": "https://www.tce.edu/"
+                "name": "NIT Trichy",
+                "location": "Tiruchirappalli, Tamil Nadu",
+                "website": "https://www.nitt.edu/"
             },
             {
                 "name": "SRM Institute of Science and Technology",
-                "location": "Tamil Nadu",
+                "location": "Chennai, Tamil Nadu",
                 "website": "https://www.srmist.edu.in/"
             },
             {
-                "name": "School of Planning and Architecture Delhi",
-                "location": "Delhi",
-                "website": "https://spa.ac.in/"
+                "name": "IIT Roorkee",
+                "location": "Roorkee, Uttarakhand",
+                "website": "https://www.iitr.ac.in/"
             },
             {
-                "name": "CEPT University",
-                "location": "Gujarat",
-                "website": "https://cept.ac.in/"
+                "name": "NIT Calicut",
+                "location": "Kozhikode, Kerala",
+                "website": "https://nitc.ac.in/"
+            },
+            {
+                "name": "IIT Kharagpur",
+                "location": "Kharagpur, West Bengal",
+                "website": "https://www.iitkgp.ac.in/"
             }
         ],
+
         "skills": [
-            "AutoCAD",
-            "SketchUp",
-            "3D Design",
+            "Architectural Design",
+            "CAD",
+            "3D Modelling",
             "Creativity",
-            "Spatial Visualization"
+            "Structural Understanding"
+        ],
+
+        "career_path": [
+            "Architect",
+            "Urban Designer",
+            "Interior Designer",
+            "Landscape Architect",
+            "Architectural Consultant"
         ]
     }
 
