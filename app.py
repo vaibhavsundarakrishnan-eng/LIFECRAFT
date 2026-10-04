@@ -67,20 +67,22 @@ def login():
     cursor = conn.cursor()
 
     query = """
-    SELECT * FROM users
-    WHERE username = %s
+    SELECT id, username, password
+    FROM users
+    WHERE username = %s AND password = %s
+    LIMIT 1
     """
 
-    cursor.execute(query, (username,))
+    cursor.execute(query, (username, password))
+
     user = cursor.fetchone()
 
     cursor.close()
     conn.close()
 
-    if user and check_password_hash(user[2], password):
-
+    if user:
         session["user_id"] = user[0]
-        session["username"] = username
+        session["username"] = user[1]
 
         return redirect("/dashboard")
 
