@@ -244,9 +244,9 @@ roadmap_data = {
             },
             {
                 "name": "Madras Medical College",
-                "location": "Tamil Nadu",
-                "website": "https://www.mmc.ac.in/"
-            },
+                "location": "Chennai, Tamil Nadu",
+                "website": "https://mmc.xenovex.com/en/"
+            },      
             {
                 "name": "Stanley Medical College",
                 "location": "Tamil Nadu",
