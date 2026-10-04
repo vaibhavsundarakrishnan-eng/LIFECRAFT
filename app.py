@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session
 from save_results import save_result
 from database import connect_db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = "lifecraft_secret_key"
@@ -33,6 +34,7 @@ def register_user():
 
     username = request.form["username"]
     password = request.form["password"]
+    hashed_password = generate_password_hash(password)
 
     conn = connect_db()
     cursor = conn.cursor()
@@ -42,7 +44,7 @@ def register_user():
     VALUES (%s, %s)
     """
 
-    cursor.execute(query, (username, password))
+    cursor.execute(query, (username, hashed_password))
     conn.commit()
 
     cursor.close()
@@ -66,16 +68,16 @@ def login():
 
     query = """
     SELECT * FROM users
-    WHERE username = %s AND password = %s
+    WHERE username = %s
     """
 
-    cursor.execute(query, (username, password))
+    cursor.execute(query, (username,))
     user = cursor.fetchone()
 
     cursor.close()
     conn.close()
 
-    if user:
+    if user and check_password_hash(user[2], password):
 
         session["user_id"] = user[0]
         session["username"] = username
@@ -83,8 +85,6 @@ def login():
         return redirect("/dashboard")
 
     return "Invalid Username or Password!"
-
-
 # --------------------------------
 # DASHBOARD
 # --------------------------------

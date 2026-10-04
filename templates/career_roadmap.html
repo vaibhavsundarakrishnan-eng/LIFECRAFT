@@ -4,17 +4,20 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LIFECRAFT - Career Roadmap</title>
+    <title>{{ career }} | LIFECRAFT</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Sora:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
 
     <style>
 
@@ -24,429 +27,743 @@
             box-sizing: border-box;
         }
 
+
         body {
-            min-height: 100vh;
-            font-family: "Sora", sans-serif;
+
+            font-family: 'Sora', sans-serif;
+
             background: #F5EEDC;
+
             color: #171512;
+
+            min-height: 100vh;
+
             overflow-x: hidden;
         }
 
 
-        /* BACKGROUND GRID */
+        /* =========================
+           ANIMATED GRID BACKGROUND
+           ========================= */
 
         body::before {
+
             content: "";
+
             position: fixed;
+
             inset: 0;
+
+            z-index: -3;
 
             background-image:
                 linear-gradient(
-                    rgba(23, 21, 18, 0.045) 1px,
+                    rgba(23, 21, 18, 0.055) 1px,
                     transparent 1px
                 ),
                 linear-gradient(
                     90deg,
-                    rgba(23, 21, 18, 0.045) 1px,
+                    rgba(23, 21, 18, 0.055) 1px,
                     transparent 1px
                 );
 
-            background-size: 45px 45px;
+            background-size: 55px 55px;
 
-            pointer-events: none;
-            z-index: -2;
+            transform: perspective(700px)
+                       rotateX(58deg)
+                       scale(1.6);
+
+            transform-origin: center bottom;
+
+            animation: gridMove 14s linear infinite;
         }
 
 
-        /* GLOW */
+        @keyframes gridMove {
+
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 0 55px;
+            }
+        }
+
+
+        /* =========================
+           GLOW EFFECTS
+           ========================= */
 
         body::after {
+
             content: "";
+
             position: fixed;
 
-            width: 550px;
-            height: 550px;
+            width: 450px;
+            height: 450px;
 
-            top: 10%;
-            left: 50%;
+            top: -150px;
+            right: -120px;
 
-            transform: translateX(-50%);
-
-            background: rgba(211, 183, 126, 0.18);
+            background: rgba(255, 255, 255, 0.8);
 
             filter: blur(100px);
 
             border-radius: 50%;
 
-            pointer-events: none;
+            z-index: -2;
+        }
+
+
+        .glow-one {
+
+            position: fixed;
+
+            width: 300px;
+            height: 300px;
+
+            bottom: -100px;
+            left: -100px;
+
+            background: rgba(0, 0, 0, 0.08);
+
+            filter: blur(100px);
+
+            border-radius: 50%;
+
             z-index: -1;
         }
 
 
-        /* TOP BAR */
-
-        .top-bar {
-            width: 100%;
-            padding: 28px 55px;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            border-bottom: 1px solid rgba(23, 21, 18, 0.1);
-        }
-
-        .logo {
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 5px;
-        }
-
-        .step {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            opacity: 0.55;
-        }
-
-
-        /* MAIN */
+        /* =========================
+           MAIN CONTAINER
+           ========================= */
 
         .container {
-            width: min(1050px, 90%);
-            margin: 0 auto;
 
-            padding: 70px 0 90px;
+            width: min(1150px, 92%);
+
+            margin: auto;
+
+            padding: 50px 0 70px;
         }
 
 
-        .status {
+        /* =========================
+           TOP NAVIGATION
+           ========================= */
+
+        .top-bar {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 35px;
+        }
+
+
+        .brand {
+
+            font-family: 'Orbitron', sans-serif;
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+        }
+
+
+        .back-button {
+
+            text-decoration: none;
+
+            color: #171512;
+
+            border: 1px solid rgba(23, 21, 18, 0.2);
+
+            background: rgba(255, 255, 255, 0.35);
+
+            padding: 11px 18px;
+
+            border-radius: 12px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            transition: 0.3s ease;
+
+            backdrop-filter: blur(12px);
+        }
+
+
+        .back-button:hover {
+
+            background: #171512;
+
+            color: #F5EEDC;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           HERO
+           ========================= */
+
+        .hero {
+
+            text-align: center;
+
+            margin-bottom: 45px;
+        }
+
+
+        .hero-tag {
+
             display: inline-block;
 
-            padding: 8px 15px;
+            font-family: 'Orbitron', sans-serif;
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+
+            padding: 8px 14px;
+
+            border: 1px solid rgba(23, 21, 18, 0.18);
 
             border-radius: 30px;
 
-            background: rgba(255, 255, 255, 0.4);
-
-            border: 1px solid rgba(23, 21, 18, 0.1);
-
-            font-size: 10px;
-            font-weight: 700;
-
-            letter-spacing: 2px;
-
-            margin-bottom: 25px;
-        }
-
-
-        h1 {
-            font-size: clamp(36px, 6vw, 64px);
-
-            line-height: 1.05;
-
-            letter-spacing: -2px;
+            background: rgba(255, 255, 255, 0.3);
 
             margin-bottom: 18px;
         }
 
 
-        .subtitle {
-            max-width: 700px;
+        .hero h1 {
 
-            font-size: 14px;
+            font-family: 'Orbitron', sans-serif;
+
+            font-size: clamp(30px, 5vw, 55px);
+
+            line-height: 1.1;
+
+            margin-bottom: 18px;
+
+            letter-spacing: -1px;
+        }
+
+
+        .hero p {
+
+            max-width: 750px;
+
+            margin: auto;
+
+            font-size: 15px;
 
             line-height: 1.8;
 
-            opacity: 0.65;
-
-            margin-bottom: 55px;
+            color: rgba(23, 21, 18, 0.7);
         }
 
 
-        /* ROADMAP GRID */
+        /* =========================
+           GLASS CARD
+           ========================= */
 
-        .roadmap-grid {
-            display: grid;
+        .glass-card {
 
-            grid-template-columns:
-                repeat(2, minmax(0, 1fr));
+            background: rgba(255, 255, 255, 0.38);
 
-            gap: 25px;
-        }
+            border: 1px solid rgba(23, 21, 18, 0.12);
 
+            border-radius: 24px;
 
-        /* CARDS */
+            padding: 30px;
 
-        .roadmap-card {
-            padding: 32px;
-
-            border-radius: 18px;
-
-            background: rgba(255, 255, 255, 0.42);
-
-            border: 1px solid rgba(23, 21, 18, 0.1);
+            margin-bottom: 25px;
 
             backdrop-filter: blur(18px);
 
-            box-shadow:
-                0 20px 50px
-                rgba(23, 21, 18, 0.06);
-
-            transition:
-                transform 0.3s ease,
-                box-shadow 0.3s ease;
-        }
-
-        .roadmap-card:hover {
-            transform: translateY(-5px);
+            -webkit-backdrop-filter: blur(18px);
 
             box-shadow:
-                0 25px 60px
-                rgba(23, 21, 18, 0.12);
+                0 20px 50px rgba(0, 0, 0, 0.06);
+
+            transition: 0.3s ease;
         }
 
 
-        .card-icon {
-            width: 48px;
-            height: 48px;
+        .glass-card:hover {
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.09);
+        }
+
+
+        /* =========================
+           SECTION HEADER
+           ========================= */
+
+        .section-header {
 
             display: flex;
+
             align-items: center;
-            justify-content: center;
 
-            border-radius: 12px;
-
-            background: rgba(211, 183, 126, 0.25);
-
-            font-size: 22px;
-
-            margin-bottom: 20px;
-        }
-
-
-        .card-title {
-            font-size: 18px;
-
-            font-weight: 700;
+            gap: 13px;
 
             margin-bottom: 22px;
         }
 
 
-        /* COLLEGES */
+        .section-number {
 
-        .college-list {
-            list-style: none;
-        }
+            width: 35px;
 
-        .college-list li {
-            padding: 15px 0;
-
-            border-bottom:
-                1px solid
-                rgba(23, 21, 18, 0.08);
-
-            font-size: 13px;
+            height: 35px;
 
             display: flex;
+
             align-items: center;
 
-            gap: 12px;
-        }
-
-        .college-list li:last-child {
-            border-bottom: none;
-        }
-
-        .college-number {
-            width: 27px;
-            height: 27px;
-
-            border-radius: 50%;
-
-            display: flex;
-            align-items: center;
             justify-content: center;
+
+            border-radius: 10px;
 
             background: #171512;
 
             color: #F5EEDC;
 
-            font-size: 10px;
-            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
 
-            flex-shrink: 0;
+            font-size: 12px;
+
+            font-weight: 700;
         }
 
 
-        /* SKILLS */
+        .section-header h2 {
 
-        .skills {
+            font-family: 'Orbitron', sans-serif;
+
+            font-size: 20px;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        /* =========================
+           COLLEGES
+           ========================= */
+
+        .college-list {
+
+            list-style: none;
+        }
+
+
+        .college-item {
+
             display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 18px 20px;
+
+            margin-bottom: 12px;
+
+            background: rgba(255, 255, 255, 0.45);
+
+            border: 1px solid rgba(23, 21, 18, 0.12);
+
+            border-radius: 16px;
+
+            transition: 0.3s ease;
+        }
+
+
+        .college-item:last-child {
+
+            margin-bottom: 0;
+        }
+
+
+        .college-item:hover {
+
+            transform: translateY(-3px);
+
+            background: rgba(255, 255, 255, 0.7);
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .college-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 16px;
+
+            min-width: 0;
+        }
+
+
+        .college-number {
+
+            width: 38px;
+
+            height: 38px;
+
+            min-width: 38px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #171512;
+
+            color: #F5EEDC;
+
+            font-weight: 700;
+
+            font-size: 13px;
+        }
+
+
+        .college-info {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+
+            min-width: 0;
+        }
+
+
+        .college-name {
+
+            font-family: 'Sora', sans-serif;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            color: #171512;
+        }
+
+
+        .college-location {
+
+            font-size: 12px;
+
+            color: rgba(23, 21, 18, 0.58);
+        }
+
+
+        .college-link {
+
+            flex-shrink: 0;
+
+            padding: 9px 14px;
+
+            border: 1px solid #171512;
+
+            border-radius: 10px;
+
+            color: #171512;
+
+            text-decoration: none;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.6px;
+
+            transition: 0.25s ease;
+        }
+
+
+        .college-link:hover {
+
+            background: #171512;
+
+            color: #F5EEDC;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================
+           SKILLS
+           ========================= */
+
+        .skills-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(180px, 1fr));
+
+            gap: 12px;
+        }
+
+
+        .skill {
+
+            padding: 16px 18px;
+
+            border-radius: 14px;
+
+            background: rgba(255, 255, 255, 0.45);
+
+            border: 1px solid rgba(23, 21, 18, 0.1);
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: 0.3s ease;
+        }
+
+
+        .skill:hover {
+
+            background: #171512;
+
+            color: #F5EEDC;
+
+            transform: translateY(-3px);
+        }
+
+
+        .skill::before {
+
+            content: "✦";
+
+            margin-right: 8px;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================
+           CAREER PATH
+           ========================= */
+
+        .path {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
 
             flex-wrap: wrap;
 
             gap: 10px;
+
+            padding: 10px 0;
         }
 
-        .skill {
-            padding: 10px 14px;
 
-            border-radius: 30px;
+        .path-step {
 
-            background: rgba(211, 183, 126, 0.2);
+            padding: 13px 18px;
 
-            border: 1px solid
-                rgba(23, 21, 18, 0.1);
+            border-radius: 12px;
 
-            font-size: 11px;
+            background: rgba(255, 255, 255, 0.5);
+
+            border: 1px solid rgba(23, 21, 18, 0.12);
+
+            font-size: 12px;
 
             font-weight: 600;
         }
 
 
-        /* CAREER PATH */
+        .path-arrow {
 
-        .path-card {
-            grid-column: 1 / -1;
-
-            text-align: center;
-
-            padding: 38px;
-        }
-
-        .path {
-            display: flex;
-
-            justify-content: center;
-            align-items: center;
-
-            flex-wrap: wrap;
-
-            gap: 12px;
-
-            margin-top: 20px;
-        }
-
-        .path-item {
-            padding: 12px 18px;
-
-            border-radius: 30px;
-
-            background: rgba(255, 255, 255, 0.55);
-
-            border: 1px solid
-                rgba(23, 21, 18, 0.1);
-
-            font-size: 11px;
-
-            font-weight: 600;
-        }
-
-        .arrow {
-            opacity: 0.45;
-            font-size: 16px;
-        }
-
-
-        /* BUTTONS */
-
-        .actions {
-            display: flex;
-
-            justify-content: center;
-
-            gap: 14px;
-
-            margin-top: 45px;
-
-            flex-wrap: wrap;
-        }
-
-        .button {
-            display: inline-block;
-
-            padding: 15px 24px;
-
-            border-radius: 8px;
-
-            text-decoration: none;
-
-            font-size: 11px;
+            font-size: 18px;
 
             font-weight: 700;
 
-            letter-spacing: 1.5px;
-
-            transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
+            opacity: 0.6;
         }
 
-        .back-button {
+
+        /* =========================
+           BOTTOM BUTTONS
+           ========================= */
+
+        .actions {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-top: 35px;
+        }
+
+
+        .action-button {
+
+            text-decoration: none;
+
+            padding: 14px 23px;
+
+            border-radius: 13px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            transition: 0.3s ease;
+
+            border: 1px solid #171512;
+        }
+
+
+        .primary-button {
+
             background: #171512;
+
             color: #F5EEDC;
         }
 
-        .home-button {
-            background: rgba(255, 255, 255, 0.45);
+
+        .secondary-button {
+
+            background: rgba(255, 255, 255, 0.35);
 
             color: #171512;
-
-            border:
-                1px solid
-                rgba(23, 21, 18, 0.12);
         }
 
-        .button:hover {
+
+        .action-button:hover {
+
             transform: translateY(-3px);
 
             box-shadow:
-                0 10px 25px
-                rgba(23, 21, 18, 0.15);
+                0 10px 25px rgba(0, 0, 0, 0.12);
         }
 
 
-        /* FOOTER */
+        .secondary-button:hover {
+
+            background: #171512;
+
+            color: #F5EEDC;
+        }
+
+
+        /* =========================
+           FOOTER
+           ========================= */
 
         footer {
+
             text-align: center;
 
-            padding: 25px;
+            margin-top: 45px;
 
-            font-size: 10px;
+            font-size: 11px;
 
-            opacity: 0.4;
+            color: rgba(23, 21, 18, 0.5);
 
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
 
-        /* MOBILE */
+        /* =========================
+           MOBILE
+           ========================= */
 
-        @media (max-width: 700px) {
-
-            .top-bar {
-                padding: 22px 25px;
-            }
+        @media (max-width: 650px) {
 
             .container {
-                padding-top: 50px;
+
+                padding-top: 30px;
             }
 
-            .roadmap-grid {
-                grid-template-columns: 1fr;
+
+            .top-bar {
+
+                margin-bottom: 25px;
             }
 
-            .path-card {
-                grid-column: auto;
+
+            .hero h1 {
+
+                font-size: 30px;
             }
 
-            h1 {
-                letter-spacing: -1px;
+
+            .glass-card {
+
+                padding: 20px;
+
+                border-radius: 19px;
             }
 
+
+            .college-item {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .college-link {
+
+                margin-left: 54px;
+            }
+
+
+            .college-name {
+
+                font-size: 14px;
+            }
+
+
+            .path {
+
+                flex-direction: column;
+            }
+
+
+            .path-arrow {
+
+                transform: rotate(90deg);
+            }
         }
 
     </style>
@@ -456,182 +773,247 @@
 
 <body>
 
+    <div class="glow-one"></div>
 
-    <!-- TOP BAR -->
-
-    <div class="top-bar">
-
-        <div class="logo">
-            LIFECRAFT
-        </div>
-
-        <div class="step">
-            STEP 03 / ROADMAP
-        </div>
-
-    </div>
-
-
-    <!-- MAIN CONTENT -->
 
     <main class="container">
 
-        <div class="status">
-            CAREER ROADMAP GENERATED
+
+        <!-- =========================
+             TOP BAR
+             ========================= -->
+
+        <div class="top-bar">
+
+            <div class="brand">
+                LIFECRAFT
+            </div>
+
+            <a href="/careers" class="back-button">
+                ← BACK TO CAREERS
+            </a>
+
         </div>
 
 
-        <h1>
-            🗺️ {{ career }}
-        </h1>
+        <!-- =========================
+             HERO
+             ========================= -->
+
+        <section class="hero">
+
+            <div class="hero-tag">
+                CAREER ROADMAP
+            </div>
+
+            <h1>
+                {{ career }}
+            </h1>
+
+            <p>
+                {{ roadmap.description }}
+            </p>
+
+        </section>
 
 
-       <p class="subtitle">
-    {{ roadmap.description }}
-</p>
+        <!-- =========================
+             COLLEGES
+             ========================= -->
 
-        <div class="roadmap-grid">
+        <section class="glass-card">
 
+            <div class="section-header">
 
-            <!-- COLLEGES -->
-
-            <div class="roadmap-card">
-
-                <div class="card-icon">
-                    🎓
+                <div class="section-number">
+                    01
                 </div>
 
-                <div class="card-title">
-                    Suggested Colleges
-                </div>
+                <h2>
+                    Recommended Colleges
+                </h2>
 
-                <ul class="college-list">
+            </div>
 
-                    {% for college in roadmap.colleges %}
 
-                    <li>
+            <ul class="college-list">
+
+                {% for college in roadmap.colleges %}
+
+                <li class="college-item">
+
+                    <div class="college-left">
 
                         <span class="college-number">
                             {{ loop.index }}
                         </span>
 
-                        <span>
-                            {{ college }}
-                        </span>
 
-                    </li>
+                        <div class="college-info">
 
-                    {% endfor %}
+                            <div class="college-name">
+                                {{ college.name }}
+                            </div>
 
-                </ul>
+                            <div class="college-location">
+                                📍 {{ college.location }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="{{ college.website }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="college-link"
+                    >
+                        OFFICIAL WEBSITE ↗
+                    </a>
+
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </section>
+
+
+        <!-- =========================
+             SKILLS
+             ========================= -->
+
+        <section class="glass-card">
+
+            <div class="section-header">
+
+                <div class="section-number">
+                    02
+                </div>
+
+                <h2>
+                    Core Skills
+                </h2>
 
             </div>
 
 
-            <!-- SKILLS -->
+            <div class="skills-grid">
 
-            <div class="roadmap-card">
+                {% for skill in roadmap.skills %}
 
-                <div class="card-icon">
-                    🧠
+                <div class="skill">
+                    {{ skill }}
                 </div>
 
-                <div class="card-title">
-                    Top 5 Skills
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CAREER PATH
+             ========================= -->
+
+        <section class="glass-card">
+
+            <div class="section-header">
+
+                <div class="section-number">
+                    03
                 </div>
 
-                <div class="skills">
-
-                    {% for skill in roadmap.skills %}
-
-                    <div class="skill">
-                        {{ skill }}
-                    </div>
-
-                    {% endfor %}
-
-                </div>
+                <h2>
+                    Typical Career Path
+                </h2>
 
             </div>
 
 
-            <!-- PATH -->
+            <div class="path">
 
-            <div class="roadmap-card path-card">
-
-                <div class="card-icon" style="margin: 0 auto 20px;">
-                    🚀
+                <div class="path-step">
+                    Class 12
                 </div>
 
-                <div class="card-title">
-                    Your Career Path
+                <div class="path-arrow">
+                    →
                 </div>
 
-                <div class="path">
+                <div class="path-step">
+                    Undergraduate Degree
+                </div>
 
-                    <div class="path-item">
-                        Class 12
-                    </div>
+                <div class="path-arrow">
+                    →
+                </div>
 
-                    <div class="arrow">
-                        →
-                    </div>
+                <div class="path-step">
+                    Skill Development
+                </div>
 
-                    <div class="path-item">
-                        Undergraduate Degree
-                    </div>
+                <div class="path-arrow">
+                    →
+                </div>
 
-                    <div class="arrow">
-                        →
-                    </div>
+                <div class="path-step">
+                    Internship
+                </div>
 
-                    <div class="path-item">
-                        Build Skills
-                    </div>
+                <div class="path-arrow">
+                    →
+                </div>
 
-                    <div class="arrow">
-                        →
-                    </div>
-
-                    <div class="path-item">
-                        Career
-                    </div>
-
+                <div class="path-step">
+                    Career
                 </div>
 
             </div>
 
+        </section>
 
-        </div>
 
-
-        <!-- ACTION BUTTONS -->
+        <!-- =========================
+             ACTIONS
+             ========================= -->
 
         <div class="actions">
 
             <a
-                href="/select-career/{{ career }}"
-                class="button back-button"
+                href="/careers"
+                class="action-button secondary-button"
             >
-                ← BACK TO CAREER
+                EXPLORE MORE CAREERS
             </a>
 
+
             <a
-                href="/"
-                class="button home-button"
+                href="/dashboard"
+                class="action-button primary-button"
             >
-                🏠 HOME
+                RETURN TO DASHBOARD
             </a>
 
         </div>
 
+
+        <!-- =========================
+             FOOTER
+             ========================= -->
+
+        <footer>
+
+            LIFECRAFT — Explore. Decide. Simulate. Build Your Future.
+
+        </footer>
+
+
     </main>
-
-
-    <footer>
-        LIFECRAFT • YOUR FUTURE. YOUR CHOICES.
-    </footer>
-
 
 </body>
 
