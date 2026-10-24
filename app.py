@@ -61,7 +61,7 @@ def register_user():
 @app.route("/login", methods=["POST"])
 def login():
 
-    username = request.form["username"]
+    username = request.form["username"].strip()
     password = request.form["password"]
 
     conn = connect_db()
@@ -70,7 +70,7 @@ def login():
     query = """
     SELECT id, username, password
     FROM users
-    WHERE username = %s AND password = %s
+    WHERE LOWER(TRIM(username)) = LOWER(%s) AND password = %s
     LIMIT 1
     """
 
