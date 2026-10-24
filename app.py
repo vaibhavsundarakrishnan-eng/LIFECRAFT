@@ -66,6 +66,8 @@ def login():
 
     conn = connect_db()
     cursor = conn.cursor()
+    cursor.execute("SELECT DATABASE(), CURRENT_USER()")
+    print("LOGIN DB DEBUG:", cursor.fetchone())
 
     query = """
     SELECT id, username, password
