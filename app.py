@@ -62,6 +62,7 @@ def register_user():
 def login():
 
     username = request.form["username"].strip()
+    print("LOGIN USERNAME:", repr(username))
     password = request.form["password"]
 
     conn = connect_db()
