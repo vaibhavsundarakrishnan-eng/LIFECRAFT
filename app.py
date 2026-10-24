@@ -1,11 +1,12 @@
+
 from flask import Flask, render_template, request, redirect, session
 from save_results import save_result
 from database import connect_db
 from werkzeug.security import generate_password_hash, check_password_hash
-
+import os
 
 app = Flask(__name__)
-app.secret_key = "lifecraft_secret_key"
+app.secret_key = os.environ.get("SECRET_KEY", "lifecraft_secret_key")
 
 
 # --------------------------------
@@ -32,24 +33,24 @@ def register():
 
 @app.route("/register", methods=["POST"])
 def register_user():
-
-    username = request.form["username"]
+    username = request.form["username"].strip()
     password = request.form["password"]
+
     hashed_password = generate_password_hash(password)
 
     conn = connect_db()
     cursor = conn.cursor()
 
-    query = """
-    INSERT INTO users (username, password)
-    VALUES (%s, %s)
-    """
-
-    cursor.execute(query, (username, hashed_password))
-    conn.commit()
-
-    cursor.close()
-    conn.close()
+    try:
+        query = """
+        INSERT INTO users (username, password)
+        VALUES (%s, %s)
+        """
+        cursor.execute(query, (username, hashed_password))
+        conn.commit()
+    finally:
+        cursor.close()
+        conn.close()
 
     return redirect("/")
 
@@ -60,49 +61,40 @@ def register_user():
 
 @app.route("/login", methods=["POST"])
 def login():
-
     username = request.form["username"].strip()
-    print("LOGIN USERNAME:", repr(username))
     password = request.form["password"]
 
     conn = connect_db()
     cursor = conn.cursor()
-    cursor.execute("SELECT DATABASE(), CURRENT_USER()")
-    print("LOGIN DB DEBUG:", cursor.fetchone())
 
-    query = """
-    SELECT id, username, password
-    FROM users
-    WHERE LOWER(TRIM(username)) = LOWER(%s) AND password = %s
-    LIMIT 1
-    """
+    try:
+        query = """
+        SELECT id, username, password
+        FROM users
+        WHERE LOWER(TRIM(username)) = LOWER(%s)
+        LIMIT 1
+        """
 
-    cursor.execute(query, (username, password))
-
-    user = cursor.fetchone()
-    print("LOGIN DEBUG - User found:", user is not None)
-
-    if user:
-        print("LOGIN DEBUG - Password hash verified:",
-        check_password_hash(user[2], password))
-
-    cursor.close()
-    conn.close()
+        cursor.execute(query, (username,))
+        user = cursor.fetchone()
+    finally:
+        cursor.close()
+        conn.close()
 
     if user and check_password_hash(user[2], password):
         session["user_id"] = user[0]
         session["username"] = user[1]
-
         return redirect("/dashboard")
 
     return "Invalid Username or Password!"
+
+
 # --------------------------------
 # DASHBOARD
 # --------------------------------
 
 @app.route("/dashboard")
 def dashboard():
-
     if "user_id" not in session:
         return redirect("/")
 
@@ -118,7 +110,6 @@ def dashboard():
 
 @app.route("/questionnaire")
 def questionnaire():
-
     if "user_id" not in session:
         return redirect("/")
 
@@ -131,7 +122,6 @@ def questionnaire():
 
 @app.route("/analyze", methods=["POST"])
 def analyze():
-
     if "user_id" not in session:
         return redirect("/")
 
@@ -140,7 +130,6 @@ def analyze():
     preference = request.form.get("preference")
 
     career_profiles = {
-
         "Computer Science": {
             "subjects": {
                 "maths": 1.0,
@@ -299,7 +288,6 @@ def analyze():
     career_explanations = {}
 
     for career, profile in career_profiles.items():
-
         subject_score = 0
 
         for subject in subjects:
@@ -309,9 +297,7 @@ def analyze():
         subject_max = sum(profile["subjects"].values())
 
         if subject_max > 0:
-            subject_percentage = (
-                subject_score / subject_max
-            ) * 100
+            subject_percentage = (subject_score / subject_max) * 100
         else:
             subject_percentage = 0
 
@@ -324,16 +310,12 @@ def analyze():
         interest_max = sum(profile["interests"].values())
 
         if interest_max > 0:
-            interest_percentage = (
-                interest_score / interest_max
-            ) * 100
+            interest_percentage = (interest_score / interest_max) * 100
         else:
             interest_percentage = 0
 
         if preference in profile["preferences"]:
-            preference_percentage = (
-                profile["preferences"][preference] * 100
-            )
+            preference_percentage = profile["preferences"][preference] * 100
         else:
             preference_percentage = 0
 
@@ -343,10 +325,7 @@ def analyze():
             + (preference_percentage * 0.20)
         )
 
-        final_score = max(
-            0,
-            min(100, final_score)
-        )
+        final_score = max(0, min(100, final_score))
 
         career_percentages[career] = round(final_score)
 
@@ -370,7 +349,6 @@ def analyze():
     top3 = sorted_careers[:3]
 
     if len(top3) >= 3:
-
         user_id = session["user_id"]
 
         save_result(
@@ -398,7 +376,6 @@ def analyze():
 
 @app.route("/careers")
 def careers():
-
     if "user_id" not in session:
         return redirect("/")
 
@@ -416,7 +393,6 @@ def careers():
 
 @app.route("/select-career/<career>")
 def select_career(career):
-
     if "user_id" not in session:
         return redirect("/")
 
@@ -437,37 +413,21 @@ def select_career(career):
 
 @app.route("/roadmap/<career>")
 def career_roadmap(career):
-
     if "user_id" not in session:
         return redirect("/")
 
     from roadmap_data import roadmap_data
 
     career_mapping = {
-        "Computer Science":
-            "Computer Science Engineering",
-
-        "Electronics & Communication":
-            "Electronics & Communication Engineering",
-
-        "Mechanical Engineering":
-            "Mechanical Engineering",
-
-        "Business & Finance":
-            "B.Com",
-
-        "Design & Creativity":
-            "Architecture",
-
-        "Healthcare":
-            "MBBS (Doctor)"
+        "Computer Science": "Computer Science Engineering",
+        "Electronics & Communication": "Electronics & Communication Engineering",
+        "Mechanical Engineering": "Mechanical Engineering",
+        "Business & Finance": "B.Com",
+        "Design & Creativity": "Architecture",
+        "Healthcare": "MBBS (Doctor)"
     }
 
-    roadmap_career = career_mapping.get(
-        career,
-        career
-    )
-
+    roadmap_career = career_mapping.get(career, career)
     roadmap = roadmap_data.get(roadmap_career)
 
     if roadmap is None:
@@ -485,27 +445,18 @@ def career_roadmap(career):
 # OLD CAREER-BASED FINANCIAL SIMULATION
 # --------------------------------
 
-@app.route(
-    "/financial-simulation/<career>",
-    methods=["GET", "POST"]
-)
+@app.route("/financial-simulation/<career>", methods=["GET", "POST"])
 def financial_simulation(career):
-
     if "user_id" not in session:
         return redirect("/")
 
     if request.method == "POST":
-
         income = float(request.form["income"])
         expenses = float(request.form["expenses"])
         savings = float(request.form["savings"])
         investment = float(request.form["investment"])
 
-        monthly_balance = (
-            income
-            - expenses
-            - investment
-        )
+        monthly_balance = income - expenses - investment
 
         return render_template(
             "financial_result.html",
@@ -527,27 +478,19 @@ def financial_simulation(career):
 # INDEPENDENT FINANCIAL SIMULATOR
 # --------------------------------
 
-@app.route(
-    "/financial-simulator",
-    methods=["GET", "POST"]
-)
+@app.route("/financial-simulator", methods=["GET", "POST"])
 def financial_simulator():
-
     if "user_id" not in session:
         return redirect("/")
 
     if request.method == "POST":
-
         income = float(request.form["income"])
         expenses = float(request.form["expenses"])
         savings = float(request.form["savings"])
         investment = float(request.form["investment"])
-        income_growth = float(
-            request.form["income_growth"]
-        )
-        investment_return = float(
-            request.form["investment_return"]
-        )
+
+        income_growth = float(request.form["income_growth"])
+        investment_return = float(request.form["investment_return"])
         years = int(request.form["years"])
 
         current_income = income
@@ -555,11 +498,9 @@ def financial_simulator():
         investment_value = 0
 
         results = []
-
         annual_expenses = expenses * 12
 
         for year in range(1, years + 1):
-
             annual_income = current_income * 12
             annual_investment = investment * 12
 
@@ -572,40 +513,21 @@ def financial_simulator():
             current_savings += annual_surplus
 
             investment_value = (
-                investment_value
-                + annual_investment
-            ) * (
-                1 + investment_return / 100
-            )
+                investment_value + annual_investment
+            ) * (1 + investment_return / 100)
 
-            total_position = (
-                current_savings
-                + investment_value
-            )
+            total_position = current_savings + investment_value
 
             results.append({
                 "year": year,
-                "income": round(
-                    annual_income, 2
-                ),
-                "expenses": round(
-                    annual_expenses, 2
-                ),
-                "savings": round(
-                    current_savings, 2
-                ),
-                "investment": round(
-                    investment_value, 2
-                ),
-                "total": round(
-                    total_position, 2
-                )
+                "income": round(annual_income, 2),
+                "expenses": round(annual_expenses, 2),
+                "savings": round(current_savings, 2),
+                "investment": round(investment_value, 2),
+                "total": round(total_position, 2)
             })
 
-            current_income = (
-                current_income
-                * (1 + income_growth / 100)
-            )
+            current_income *= (1 + income_growth / 100)
 
         return render_template(
             "financial_result.html",
@@ -613,48 +535,42 @@ def financial_simulator():
             years=years
         )
 
-    return render_template(
-        "financial_simulator.html"
-    )
+    return render_template("financial_simulator.html")
 
 
 # --------------------------------
 # PREVIOUS REPORTS
 # --------------------------------
+
 @app.route("/reports")
 def reports():
-
     if "user_id" not in session:
         return redirect("/")
 
     conn = connect_db()
-
     cursor = conn.cursor(dictionary=True)
 
-    query = """
-    SELECT
-        id,
-        career1,
-        career2,
-        career3,
-        score1,
-        score2,
-        score3
-    FROM career_results
-    WHERE user_id = %s
-    ORDER BY id DESC
-    LIMIT 5
-    """
+    try:
+        query = """
+        SELECT
+            id,
+            career1,
+            career2,
+            career3,
+            score1,
+            score2,
+            score3
+        FROM career_results
+        WHERE user_id = %s
+        ORDER BY id DESC
+        LIMIT 5
+        """
 
-    cursor.execute(
-        query,
-        (session["user_id"],)
-    )
-
-    reports = cursor.fetchall()
-
-    cursor.close()
-    conn.close()
+        cursor.execute(query, (session["user_id"],))
+        reports = cursor.fetchall()
+    finally:
+        cursor.close()
+        conn.close()
 
     return render_template(
         "reports.html",
@@ -662,15 +578,14 @@ def reports():
         username=session.get("username")
     )
 
+
 # --------------------------------
 # LOGOUT
 # --------------------------------
 
 @app.route("/logout")
 def logout():
-
     session.clear()
-
     return redirect("/")
 
 
