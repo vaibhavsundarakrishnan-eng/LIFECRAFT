@@ -3,6 +3,7 @@ from save_results import save_result
 from database import connect_db
 from werkzeug.security import generate_password_hash, check_password_hash
 
+
 app = Flask(__name__)
 app.secret_key = "lifecraft_secret_key"
 
@@ -76,6 +77,11 @@ def login():
     cursor.execute(query, (username, password))
 
     user = cursor.fetchone()
+    print("LOGIN DEBUG - User found:", user is not None)
+
+    if user:
+        print("LOGIN DEBUG - Password hash verified:",
+        check_password_hash(user[2], password))
 
     cursor.close()
     conn.close()
